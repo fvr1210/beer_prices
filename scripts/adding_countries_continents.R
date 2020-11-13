@@ -41,4 +41,8 @@ beer_data_2 <- beer_data_2 %>%
                               TRUE ~ (country)))
 
 # save
-write.csv2(beer_data_2, "processed-data/wwbp_with_contries.csv")
+write.csv2(beer_data_2, "processed-data/wwbp_with_countries.csv")
+
+# adding continents
+# https://stackoverflow.com/questions/47510141/get-continent-name-from-country-name-in-r
+library()
