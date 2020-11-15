@@ -1,5 +1,5 @@
 # Preparing the Beer Data
-# The data was produced for a study by goeurop (no omio.de) from 2015
+# The data was produced for a study by goeurop (now omio.de) from 2015
 
 library(dplyr)
 library(readr)
@@ -37,7 +37,7 @@ beer_data_2 <- beer_data_2 %>%
                               CITY=="Luxembourg" ~ "Luxembourg",
                               CITY=="Seville" ~ "Spain",
                               CITY=="Tel Aviv" ~ "Israel",
-                              CITY=="The Hague" ~ "Netherland",
+                              CITY=="The Hague" ~ "Netherlands",
                               TRUE ~ (country)))
 
 # save
@@ -45,4 +45,23 @@ write.csv2(beer_data_2, "processed-data/wwbp_with_countries.csv")
 
 # adding continents
 # https://stackoverflow.com/questions/47510141/get-continent-name-from-country-name-in-r
-library()
+library(countrycode)
+
+# America is one continent in the function countrycode therefore it is maybe better to use region, however ther central Asia and Europ are combined...
+
+beer_data_2$continent <- countrycode(sourcevar = beer_data_2[["country"]],
+                            origin = "country.name",
+                            destination = "continent")
+
+beer_data_2$region <- countrycode(sourcevar = beer_data_2[["country"]],
+                                     origin = "country.name",
+                                     destination = "region")
+
+beer_data_2$code <- countrycode(sourcevar = beer_data_2[["country"]],
+                                  origin = "country.name",
+                                  destination = "iso3c")
+
+beer_data_2$cc <- paste(beer_data_2$CITY, " (", beer_data_2$code, ")", sep = "")
+
+# save
+write_delim(beer_data_2, "processed-data/wwbp_with_countries_continents_regions.csv", delim = ";")
