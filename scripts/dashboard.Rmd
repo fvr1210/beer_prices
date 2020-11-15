@@ -16,115 +16,122 @@ runtime: shiny
  
 
 ```{r packages, include=FALSE}
-library(tidyverse) # Version 1.3.0
+
 library(shiny) # Version 4.0.3
 library(lubridate)
+library(plotly)
+library(ggthemes)
+library(tidyverse) # Version 1.3.0
 
 ```
 
 ```{r daten, include=FALSE}
-df_b <- read_delim("../processed-data/wwbp_with_countries_continents_regions.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+df_b <- read_delim("../processed-data/wwbp_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
 
 
 ```
+<br>
 
-```{r city, echo=F}
-
-
-
-
-checkboxGroupInput(inputId = "d_cc",label = "City:", inline = T,
-                                                    choices = sort(unique(df_b$cc)),
-                                                    selected = sort(unique(df_b$cc)))
+### Barplots for the different prices (supermarket, bar, average) in selected cities 
+<br>
 
 
-checkboxGroupInput(inputId = "d_region", label = "Regions:", inline = T,
+```{r prices city regio, echo=F}
+#choosing specific cities
+checkboxGroupInput(inputId = "d_countries",label = "Select Countries:", inline = T,
+                                                    choices = sort(unique(df_b$country)),
+                                                    selected = sort(unique(df_b$country))) 
+
+#choosing specific regions
+checkboxGroupInput(inputId = "d_region", label = "Select Regions:", inline = T,
                                                     choices = sort(unique(df_b$region)),
-                                                    selected = sort(unique(df_b$region)))
+                                                    selected = sort(unique(df_b$region))) 
 ```
 
 ```{r city_data_reaktiv, echo=F}
 # filtering the reactive datasets based on the choices made
 df_bC <- reactive({
-  filter(df_b, cc %in% input$d_cc & region %in% input$d_region)
+  dplyr::filter(df_b, country %in% input$d_countries & region %in% input$d_region)
 })
 
 ```
 
-```{r plot city, echo=F}
- renderPlot ({
-  
-   ggplot(df_bC(), aes(x=reorder(cc, -`BAR PRICE $`), y = `BAR PRICE $`, fill = region)) +
+### Price for a Beer in a bar in USD (2015)
+```{r plot prices bar, echo=F}
+# setting colours otherwise they change each time a region is not selected
+col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "coral1", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
+
+
+# Bar prices
+ renderPlotly ({
+  p_1 <- ggplot(df_bC(), aes(x=reorder(cc, -`BAR PRICE $`), y = `BAR PRICE $`, fill = region, text = paste("City:", cc, "\nPrice:", `BAR PRICE $`, "$"))) +
    geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
+   scale_fill_manual(values = col_reg) +
    # scale_fill_manual(values = col_age) +
    scale_x_discrete() +
+   xlab("City") +
+  ylab("Price for a Beer in a bar in USD") +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 90)) +
-  scale_fill_brewer(palette = "Dark2")
+  theme(axis.text.x = element_text(angle = 90, size = 7)) +
+  theme(legend.title = element_blank()) +
+  theme(legend.position = "bottom")
+   
+ggplotly(p_1, tooltip = "text")
+     
  })
-
 ```
 
-
-
-
-
-
-```{r country or region, echo=F}
-
-
-
-
-radioButtons("VarA",label = "Choose a geographical scale:", inline = T,
-                    choices = c('Countries', 'Regions'),
-                    selected='Countries')
-
-
-conditionalPanel(
-  condition = "input.VarA == 'Countries'",
-  checkboxGroupInput(inputId = "d_country", label = "Countries:", inline = T,
-                                                    choices = sort(unique(df_b$country)),
-                                                    selected = sort(unique(df_b$country)))
-)
-
-conditionalPanel(
-  condition = "input.VarA == 'Regions'",
-  checkboxGroupInput(inputId = "d_region_2",label = "Regions:", inline = T,
-                                                    choices = sort(unique(df_b$region)),
-                                                    selected = sort(unique(df_b$region))))
-```
-
-```{r country_region_data_reaktiv, echo=F}
-# filtering the reactive datasets based on the choices made
-df_bc <- reactive({
-   filter(df_b, country %in% input$d_country)
- }) 
-
-
-df_br <- reactive({
-   filter(df_b, region %in% input$d_region2)
- }) 
-
-```
-```{r plot country_region, echo=F}
+### Price for a Beer in a supermarkt in USD (2015)
+```{r plot prices supermakrt, echo=F} 
+# Supermarkt prices
  renderPlot ({
-#Countries as variable
-  if (input$VarA=="Countries"){   
-   ggplot(df_bc(), aes(x=CITY, y = `BAR PRICE $`, fill = region)) +
+   ggplot(df_bC(), aes(x=reorder(cc, -`AVERAGE SUPERMARKET PRICE $`), y = `AVERAGE SUPERMARKET PRICE $`, fill = region)) +
    geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
+   scale_fill_manual(values = col_reg) +
    # scale_fill_manual(values = col_age) +
    scale_x_discrete() +
-  theme_bw() 
-  }  
-#Falls Geschecht ausgewählt
-  else {   
-     ggplot(df_br(), aes(x=CITY, y = `BAR PRICE $`, fill = region)) +
-   geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
-   # scale_fill_manual(values = col_age) +
-   scale_x_discrete() +
-  theme_bw() 
-  }  
+   xlab("City") +
+  ylab("Price for a Beer in a supermarket in USD") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
  })
 
+```
+
+
+### Overall price for a Beer in USD (2015)
+```{r plot prices overall, echo=F} 
+# Supermarkt prices
+ renderPlot ({
+   ggplot(df_bC(), aes(x=reorder(cc, -`OVERALL PRICE $`), y = `OVERALL PRICE $`, fill = region)) +
+   geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
+   scale_fill_manual(values = col_reg) +
+   # scale_fill_manual(values = col_age) +
+   scale_x_discrete() +
+   xlab("City") +
+  ylab(" Overall price for a Beer in USD") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+ })
 
 ```
+
+
+### How much more does a beer cost in a bar than in the supermarket?
+```{r plot prices markup, echo=F} 
+# Supermarkt prices
+ renderPlot ({
+   ggplot(df_bC(), aes(x=reorder(cc, -markup), y = markup, fill = region)) +
+   geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
+   scale_fill_manual(values = col_reg) +
+   # scale_fill_manual(values = col_age) +
+   scale_x_discrete() +
+   xlab("City") +
+  ylab(" Overall price for a Beer in USD") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90))
+ })
+
+```
+
+

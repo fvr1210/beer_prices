@@ -6,7 +6,7 @@ library(readr)
 library(maps) #needed for loading cities and countrys
 library(stringr)
 
-beer_data <- read_delim("raw-data/word_wide_beer_prices.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
+beer_data <- read_delim("raw-data/world_wide_beer_prices.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
   mutate(year=2015) # the data was produced in 2015
 
 # loading the city/country data
@@ -40,8 +40,6 @@ beer_data_2 <- beer_data_2 %>%
                               CITY=="The Hague" ~ "Netherlands",
                               TRUE ~ (country)))
 
-# save
-write.csv2(beer_data_2, "processed-data/wwbp_with_countries.csv")
 
 # adding continents
 # https://stackoverflow.com/questions/47510141/get-continent-name-from-country-name-in-r
@@ -63,5 +61,14 @@ beer_data_2$code <- countrycode(sourcevar = beer_data_2[["country"]],
 
 beer_data_2$cc <- paste(beer_data_2$CITY, " (", beer_data_2$code, ")", sep = "")
 
+
+# calculating the ration bar prices to supermarkt prices 
+beer_data_2$markup <- beer_data_2$`BAR PRICE $`/beer_data_2$`AVERAGE SUPERMARKET PRICE $`
+
+
+
+
+
+
 # save
-write_delim(beer_data_2, "processed-data/wwbp_with_countries_continents_regions.csv", delim = ";")
+write_delim(beer_data_2, "processed-data/wwbp_add_var.csv", delim = ";")
