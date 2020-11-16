@@ -22,8 +22,10 @@ library(lubridate)
 library(plotly)
 library(ggthemes)
 library(tidyverse) # Version 1.3.0
+library(shinydashboard)
 
 ```
+
 
 ```{r daten, include=FALSE}
 df_b <- read_delim("../processed-data/wwbp_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
@@ -35,6 +37,11 @@ df_b <- read_delim("../processed-data/wwbp_add_var.csv", delim = ";" , locale = 
 ### Barplots for the different prices (supermarket, bar, average) in selected cities 
 <br>
 
+```{r daten_quality, include=FALSE}
+infoBox("data quality", value = "Test", subtitle = NULL,
+  icon = shiny::icon("bar-chart"), color = "aqua", width = 4,
+  href = NULL, fill = FALSE)
+```
 
 ```{r prices city regio, echo=F}
 #choosing specific cities
