@@ -1,8 +1,8 @@
-AVERAGE SUPERMARKET PRICE $;BAR PRICE $;OVERALL PRICE $;BEER PER CAPITA/YEAR (LITERS);AVERAGE SPENT ON BEER PER PERSON PER YEAR $;year;pop;continent;region;code;cc;markup
-1.39;6.98;4.19;8;111;2015;619316;Asia;Middle East & North Africa;ARE;Abu Dhabi (ARE);6.957264957264958
-1.18;5.33;3.25;86;782;2015;744159;Europe;Europe & Central Asia;NLD;Amsterdam (NLD);5.875
-1.07;4.25;2.66;83;495;2015;507574;Americas;Latin America & Caribbean;PRY;Asuncion (PRY);2.8173076923076925
-1.57;5.85;3.71;77;869;2015;429918;Oceania;East Asia & Pacific;NZL;Auckland (NZL);3.5209580838323356
-1.5;6.53;4.01;85;950;2015;567759;Americas;North America;USA;Boston (USA);4.095890410958905
-1.08;3.2;2.14;98;626;2015;3546429;Africa;Sub-Saharan Africa;ZAF;Cape Town (ZAF);2.962962962962963
-1.18;2.31;1.75;6;29;2015;11215130;Asia;South Asia;IND;Delhi (IND);1.957627118644068
+code;cc;region;asmp;abp;markup;aop;bpc_ge;bpc_gho;bpc_wiki;r_ge;r_gho;r_wiki
+ARE;Abu Dhabi (ARE);Middle East & North Africa;1.39;6.98;6.957264957264958;4.19;8;0.23;NA;73;71;61
+NLD;Amsterdam (NLD);Europe & Central Asia;1.18;5.33;5.875;3.25;86;4.04;78.1;29;28;18
+PRY;Asuncion (PRY);Latin America & Caribbean;1.07;4.25;2.8173076923076925;2.66;83;3.13;NA;36;47;62
+NZL;Auckland (NZL);East Asia & Pacific;1.57;5.85;3.5209580838323356;3.71;77;3.28;65.5;45;43;35
+USA;Boston (USA);North America;1.5;6.53;4.095890410958905;4.01;85;4.13;73.5;35;25;28
+ZAF;Cape Town (ZAF);Sub-Saharan Africa;1.08;3.2;2.962962962962963;2.14;98;4.01;60.1;22;30;36
+IND;Delhi (IND);South Asia;1.18;2.31;1.957627118644068;1.75;6;0.21;2;74;72;59

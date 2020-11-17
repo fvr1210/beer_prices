@@ -8,9 +8,9 @@ library(ggthemes)
 library(tidyverse) # Version 1.3.0
 library(shinydashboard)
 
-df_bci <- read_delim("processed-data/wwbp_city_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
-df_bco <- read_delim("processed-data/wwbp_country_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
-df_br <- read_delim("processed-data/wwbp_region_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+df_bci <- read_delim("../../processed-data/wwbp_city_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+df_bco <- read_delim("../../processed-data/wwbp_country_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+df_br <- read_delim("../../processed-data/wwbp_region_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
 
 
 # Define UI for application that draws a histogram
@@ -79,12 +79,12 @@ server <- function(input, output) {
   
   output$menu <- renderMenu({
     sidebarMenu(
-      menuItem("City Level", tabName = "city_side", icon = icon("th")),
-      menuItem("Country Level", tabName = "country_side", icon = icon("th")))
+      menuItem("City Level", tabName = "city_side", icon = icon("city")),
+      menuItem("Country Level", tabName = "country_side", icon = icon("flag")))
     })
   
   
-  # Country Level
+  # City Level
     df_bcir <- reactive({
         dplyr::filter(df_bci, cc %in% input$d_cc & country %in% input$d_countries & region %in% input$d_regions)
     })
@@ -92,7 +92,7 @@ server <- function(input, output) {
     col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
     
     output$plot1 <-  renderPlotly ({
-    p_1 <- ggplot(df_bcir(), aes(x=reorder(cc, -`BAR PRICE $`), y = `BAR PRICE $`, fill = region, text = paste("City:", cc, "\nPrice:", `BAR PRICE $`, "$"))) +
+    p_1 <- ggplot(df_bcir(), aes(x=reorder(cc, -abp), y = abp, fill = region, text = paste("City:", cc, "\nPrice:", abp, "$"))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         # scale_fill_manual(values = col_age) +
@@ -109,7 +109,7 @@ server <- function(input, output) {
     })
     
     output$plot2 <-  renderPlotly ({
-      p_2 <- ggplot(df_bcir(), aes(x=reorder(cc, -`AVERAGE SUPERMARKET PRICE $`), y = `AVERAGE SUPERMARKET PRICE $`, fill = region, text = paste("City:", cc, "\nPrice:", `AVERAGE SUPERMARKET PRICE $`, "$"))) +
+      p_2 <- ggplot(df_bcir(), aes(x=reorder(cc, -asmp), y = asmp, fill = region, text = paste("City:", cc, "\nPrice:", asmp, "$"))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         # scale_fill_manual(values = col_age) +
@@ -126,7 +126,7 @@ server <- function(input, output) {
     })
     
     output$plot3 <-  renderPlotly ({
-      p_3 <- ggplot(df_bcir(), aes(x=reorder(cc, -`OVERALL PRICE $`), y = `OVERALL PRICE $`, fill = region, text = paste("City:", cc, "\nPrice:", `OVERALL PRICE $`, "$"))) +
+      p_3 <- ggplot(df_bcir(), aes(x=reorder(cc, -aop), y = aop, fill = region, text = paste("City:", cc, "\nPrice:", aop, "$"))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         # scale_fill_manual(values = col_age) +
@@ -159,15 +159,15 @@ server <- function(input, output) {
       ggplotly(p_4, tooltip = "text") 
     })
     
-    # City Level
+    # Country Level
     df_bcor <- reactive({
-      dplyr::filter(df_bco, country %in% input$d_countries & region %in% input$d_regions)
+      dplyr::filter(df_bco, country %in% input$c_countries & region %in% input$c_regions)
     })
     
     col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
     
     output$plot5 <-  renderPlotly ({
-      p_5 <- ggplot(df_bcor(), aes(x=reorder(country, -`BAR PRICE $`), y = `BAR PRICE $`, fill = region, text = paste("City:", country, "\nPrice:", `BAR PRICE $`, "$"))) +
+      p_5 <- ggplot(df_bcor(), aes(x=reorder(country, -abp), y = abp, fill = region, text = paste("Country:", country, "\nPrice:", abp, "$"))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         # scale_fill_manual(values = col_age) +
@@ -184,7 +184,7 @@ server <- function(input, output) {
     })
     
     output$plot6 <-  renderPlotly ({
-      p_6 <- ggplot(df_bcor(), aes(x=reorder(country, -`AVERAGE SUPERMARKET PRICE $`), y = `AVERAGE SUPERMARKET PRICE $`, fill = region, text = paste("City:", country, "\nPrice:", `AVERAGE SUPERMARKET PRICE $`, "$"))) +
+      p_6 <- ggplot(df_bcor(), aes(x=reorder(country, -asmp), y = asmp, fill = region, text = paste("City:", country, "\nPrice:", asmp, "$"))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         # scale_fill_manual(values = col_age) +
@@ -201,7 +201,7 @@ server <- function(input, output) {
     })
     
     output$plot7 <-  renderPlotly ({
-      p_7 <- ggplot(df_bcor(), aes(x=reorder(country, -`OVERALL PRICE $`), y = `OVERALL PRICE $`, fill = region, text = paste("City:", country, "\nPrice:", `OVERALL PRICE $`, "$"))) +
+      p_7 <- ggplot(df_bcor(), aes(x=reorder(country, -aop), y = aop, fill = region, text = paste("Country:", country, "\nPrice:", aop, "$"))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         # scale_fill_manual(values = col_age) +
@@ -218,7 +218,7 @@ server <- function(input, output) {
     })
     
     output$plot8 <-  renderPlotly ({
-      p_8 <- ggplot(df_bcor(), aes(x=reorder(country, -markup), y = markup, fill = region, text = paste("City:", country, "\nRatio:", round(markup,2)))) +
+      p_8 <- ggplot(df_bcor(), aes(x=reorder(country, -markup), y = markup, fill = region, text = paste("Country:", country, "\nRatio:", round(markup,2)))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         # scale_fill_manual(values = col_age) +
@@ -233,6 +233,23 @@ server <- function(input, output) {
       
       ggplotly(p_8, tooltip = "text") 
     })
+
+# Scaterplot
+output$plot9 <-  renderPlotly ({
+  p_9 <- ggplot(df_bcor(), aes(x=aop, y = `BEER PER CAPITA/YEAR (LITERS)`, fill = region, text = paste("Country:", country, "\nBeer Consumption:", round(`BEER PER CAPITA/YEAR (LITERS)`,2)))) +
+    geom_point(color = NA) +
+    scale_fill_manual(values = col_reg) +
+    # scale_fill_manual(values = col_age) +
+    xlab("Overall Prices in USD") +
+    ylab("Beer per Capita 2015? in Liters") +
+    ggtitle("Markup in selected cities") +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 90, size = 7)) +
+    theme(legend.title = element_blank()) +
+    theme(legend.position = "bottom")
+  
+  ggplotly(p_, tooltip = "text") 
+})
 }
 
 shinyApp(ui, server)
