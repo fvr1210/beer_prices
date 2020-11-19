@@ -5,6 +5,7 @@ library(dplyr)
 library(readr)
 library(maps) #needed for loading cities and countrys
 library(stringr)
+library(tidyr)
 
 bd <- read_delim("raw-data/world_wide_beer_prices.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
   mutate(year=2015) # the data was produced in 2015
@@ -59,11 +60,16 @@ bd_2$code <- countrycode(sourcevar = bd_2[["country"]],
                                   origin = "country.name",
                                   destination = "iso3c")
 
+bd_2$flag_code <- countrycode(sourcevar = bd_2[["country"]],
+                         origin = "country.name",
+                         destination = "iso2c") # is needed later visualasing with flags
+bd_2$flag_code <- tolower(bd_2$flag_code)
+
 bd_2$cc <- paste(bd_2$CITY, " (", bd_2$code, ")", sep = "")
 
 
 # calculating the ration bar prices to supermarkt prices 
-bd_2$markup <- bd_2$`BAR PRICE $`/bd_2$`AVERAGE SUPERMARKET PRICE $`
+bd_2$markup <- round(bd_2$`BAR PRICE $`/bd_2$`AVERAGE SUPERMARKET PRICE $`,1)
 
 
 # The beer consumption per Capita data seems not soo trust worthy... vietnam for example has a really high consumption (higher than germany). 
@@ -120,13 +126,33 @@ bd_2_gho_w$r_ge <- rank(-bd_2_gho_w$`BEER PER CAPITA/YEAR (LITERS)`, ties.method
 bd_2_gho_w$r_gho <- rank(-bd_2_gho_w$`2015`, ties.method = "max") # for the GHO Data I chose the data from year 2015
 bd_2_gho_w$r_wiki <- rank(-as.numeric(bd_2_gho_w$`Consumptionper capita[1](litres per year)`), ties.method = "max")
 
+
+
+# Add GNI (Gross national income) per capita from 2015 to the dataset as proxy for average income 
+
+gni <- read_delim("raw-data/gni_per_capita_wordlbank.csv", delim = "," , locale = locale(encoding = 'ISO-8859-2')) %>% 
+  mutate(`2015 [YR2015]` = as.numeric(`2015 [YR2015]`)) %>% 
+  drop_na %>% 
+  select(-c(`Series Code`)) %>%  # spread does not work otherwise
+  spread(`Series Name`, `2015 [YR2015]`) %>%   #long to wide format
+  rename("code" = "Country Code") %>% 
+  select(-c(`GNI per capita (constant 2010 US$)`)) # for swizterland and island no entry and not much differenze by the rank for the other countries so that I only use atlas method
+  
+bd_2_gho_w_gni <- bd_2_gho_w <- left_join(bd_2_gho_w, gni, by="code")
+
 # cleaning and renaming the bd_2_gho_w dataset to final dataset
-df_f <- bd_2_gho_w %>% 
+df_f <- bd_2_gho_w_gni %>% 
   rename("city" = "CITY",  "asmp" = `AVERAGE SUPERMARKET PRICE $`, "abp" = `BAR PRICE $`, "aop" =`OVERALL PRICE $`, 
          "bpc_ge" = `BEER PER CAPITA/YEAR (LITERS)`, "country" = country.x, 
-         "bpc_gho" = `2015`, "bpc_wiki" = `Consumptionper capita[1](litres per year)`) %>% 
-  select(c(country, code, city, cc, region, asmp, abp, markup, aop, bpc_ge,  bpc_gho, bpc_wiki, r_ge, r_gho, r_wiki ))
+         "bpc_gho" = `2015`, "bpc_wiki" = `Consumptionper capita[1](litres per year)`, # choocing the year 2015 for the GHO data because the study from goEurop is 2015
+          "gni_atlas" = `GNI per capita, Atlas method (current US$)`) %>% 
+  select(c(country, code, city, cc, flag_code, region, asmp, abp, markup, aop, bpc_ge,  bpc_gho, bpc_wiki, r_ge, r_gho, r_wiki, gni_atlas ))
 
+# add calculations: how much beer you can buy at average (gni/price)
+df_f <- df_f %>% 
+  mutate(be_gni_sm = round(gni_atlas/asmp, 1)) %>% 
+  mutate(be_gni_bp = round(gni_atlas/abp, 1)) %>% 
+  mutate(be_gni_op = round(gni_atlas/aop, 1)) 
 
 
 # calculating prices on country and region level (https://stackoverflow.com/questions/11562656/calculate-the-mean-by-group)
