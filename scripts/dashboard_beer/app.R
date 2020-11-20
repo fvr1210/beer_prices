@@ -444,7 +444,7 @@ output$plot12 <-  renderPlotly ({
     scale_x_discrete() +
     xlab("Country") +
     ylab("Amount of 0.33L beer") +
-    ggtitle("Beer buying Power in a bar") +
+    ggtitle("If you use the countries GNI per capita to only buy beer, how many beers could you buy at the bar?") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -461,7 +461,7 @@ output$plot13 <-  renderPlotly ({
     scale_x_discrete() +
     xlab("Country") +
     ylab("Amount of 0.33L beer") +
-    ggtitle("Beer buying Power in a supermarket") +
+    ggtitle("If you use the countries GNI per capita to only buy beer, how many beers could you buy at the supermarket?") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -478,7 +478,7 @@ output$plot14 <-  renderPlotly ({
     scale_x_discrete() +
     xlab("Country") +
     ylab("Amount of 0.33L beer") +
-    ggtitle("Beer buying Power overall") +
+    ggtitle("If you use the countries GNI per capita to only buy beer, how many beers could you buy at overall Prices?") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +

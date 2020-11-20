@@ -6,6 +6,7 @@ library(readr)
 library(maps) #needed for loading cities and countrys
 library(stringr)
 library(tidyr)
+library(readxl)
 
 bd <- read_delim("raw-data/world_wide_beer_prices.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
   mutate(year=2015) # the data was produced in 2015
@@ -140,8 +141,8 @@ gni <- read_delim("raw-data/gni_per_capita_wordlbank.csv", delim = "," , locale 
   
 bd_2_gho_w_gni <- bd_2_gho_w <- left_join(bd_2_gho_w, gni, by="code")
 
-# cleaning and renaming the bd_2_gho_w dataset to final dataset
-df_f <- bd_2_gho_w_gni %>% 
+# cleaning and renaming the bd_2_gho_w dataset 
+df_cr <- bd_2_gho_w_gni %>% 
   rename("city" = "CITY",  "asmp" = `AVERAGE SUPERMARKET PRICE $`, "abp" = `BAR PRICE $`, "aop" =`OVERALL PRICE $`, 
          "bpc_ge" = `BEER PER CAPITA/YEAR (LITERS)`, "country" = country.x, 
          "bpc_gho" = `2015`, "bpc_wiki" = `Consumptionper capita[1](litres per year)`, # choocing the year 2015 for the GHO data because the study from goEurop is 2015
@@ -149,20 +150,39 @@ df_f <- bd_2_gho_w_gni %>%
   select(c(country, code, city, cc, flag_code, region, asmp, abp, markup, aop, bpc_ge,  bpc_gho, bpc_wiki, r_ge, r_gho, r_wiki, gni_atlas ))
 
 # add calculations: how much beer you can buy at average (gni/price)
-df_f <- df_f %>% 
+df_cr_gni <- df_cr %>% 
   mutate(be_gni_sm = round(gni_atlas/asmp, 1)) %>% 
   mutate(be_gni_bp = round(gni_atlas/abp, 1)) %>% 
   mutate(be_gni_op = round(gni_atlas/aop, 1)) 
 
 
+# add average net hourly earnings from UBS data  
+av_earning <- read_excel("raw-data/UBS_PricesAndEarnings_OpenData.xlsx") %>% 
+  filter(Year==2015) %>%  # choosing again 2015
+  filter(`Main Section`=="Earnings: Average hourly (net)") %>% 
+  rename("year" = "Year") %>% 
+  rename("city" = "City") %>%  # for the joing with wc_data
+  rename("N_H_E" = "Value") %>% 
+  mutate(N_H_E = round(as.numeric(N_H_E, 2)))%>% 
+  select(c(city, N_H_E)) 
+
+df_gni_ae <- left_join(df_cr_gni, av_earning) 
+
+# calculate how long you have to work for a bear
+df_f <- df_gni_ae %>% 
+  mutate(smbi = round(asmp/N_H_E*60)) %>%  # Supermarket beer index in Minutes
+  mutate(bbi = round(abp/N_H_E*60)) %>%  # Supermarket beer index
+  mutate(obi = round(aop/N_H_E*60))
+  
 # calculating prices on country and region level (https://stackoverflow.com/questions/11562656/calculate-the-mean-by-group)
 bdc <- df_f %>% group_by(country) %>% 
   mutate(asmp = round(mean(asmp), 2)) %>% 
   mutate(abp = round(mean(abp), 2)) %>% 
   mutate(aop = round(mean(aop), 2)) %>% 
+  mutate(N_H_E)
   distinct (country, .keep_all = T) %>%  
   ungroup %>% 
-  select(-c(city))
+  select(-c(city, cc))
 
 bdr <-  df_f %>% group_by(region) %>% 
   mutate(asmp = round(mean(asmp), 2)) %>% 
