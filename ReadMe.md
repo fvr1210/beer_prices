@@ -3,7 +3,6 @@
 <p>Do you? Yes beer is expensive in restaurants and bars in switzerland but I don't think it is in the supermarket, where you can buy beer at low prices down to 0.50 $ for a half liter can. While travalling I never really found cheaper beer in supermarkets or small shops.</p>
 <p>Sometime ago I found data about beer prices which was collected by GoEuro (now Omio) a travel where you can find, compare and buy trail, bus and flight tickets for Europe (now also for the USA and Canada, that&rsquo;s maybe the reason why they changed names&hellip;). &nbsp;This data includes among others supermarket, hotel bar and overall prices for a 0.33L beer in different cities.</p>
 <p>So what do you do when you are interested in economics, data and beer? Right you build a Beer Data Dashboard aka Beerboard. &nbsp;</p>
-<p>With this Beerboard I know can answer questions like:</p>
 <h4>With this Beerboard I know can answer questions like:</h4>
 <ul>
 <li>
@@ -18,6 +17,7 @@
 </ul>
 <h4><strong>In the other two subsection of this info tab you find more information about the data which is used for this Beerboard. If you want to look at nice graphs switch to the City or Country Level tab.</strong></h4>
 <h4>If you like my Beerboard or you want to have your own dashboard for your data you can contact me over my <a href="www.linkedin.com/in/flavio-von-rickenbach-12103b">LinkedIn</a> or via <a href="mailto:%20flavio_von_rickenbach@hotmail.com">Mail</a></h4>
+CC-BY 4.0
 <p><h2>Data Sources</h2></p>
 <h4><p>For this Beerboard I use data from different sources and this sources sometimes also use further sources&hellip; I try the show on this info site the source of each number such that I don&rsquo;t have to do this in the graphs which would make them more messy. Following I name the source of the data, how the data is named in my GitHub folder, the names of the variables and the meaning of this variables</p></h4>
 <h3>GoEuro Data </h3>
