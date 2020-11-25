@@ -15,16 +15,16 @@ load.emojifont('OpenSansEmoji.ttf')
 
 #read city level data
 
-df_bci_wide <- read_delim("../../processed-data/beer_city_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
-df_bci_long <- read_delim("../../processed-data/beer_city_add_long.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+df_bci_wide <- read_delim("../processed-data/beer_city_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+df_bci_long <- read_delim("../processed-data/beer_city_add_long.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
 
-df_bco <- read_delim("../../processed-data/beer_country_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
+df_bco <- read_delim("../processed-data/beer_country_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
   mutate(label = c(emoji('beer')))
 
 
-introduction_text <-  read_file("../../processed-data/introduction.html", locale = locale(encoding = 'ISO-8859-2'))
-data_source_text <-  read_file("../../processed-data/data_source.html", locale = locale(encoding = 'ISO-8859-2'))
-data_final_text <-  read_file("../../processed-data/data_final.html", locale = locale(encoding = 'ISO-8859-2'))
+introduction_text <-  read_file("../processed-data/introduction.html", locale = locale(encoding = 'ISO-8859-2'))
+data_source_text <-  read_file("../processed-data/data_source.html", locale = locale(encoding = 'ISO-8859-2'))
+data_final_text <-  read_file("../processed-data/data_final.html", locale = locale(encoding = 'ISO-8859-2'))
 
 
 # Define UI for application that draws a histogram
@@ -352,7 +352,7 @@ output$data_final <- renderUI({HTML(data_final_text)})
     
     
 # colors for regions    
-col_reg <- c( "Euroe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
+col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
     
   
     # Average price in a bar (City level)
@@ -547,7 +547,7 @@ col_reg <- c( "Euroe & Central Asia" = "green3", "East Asia & Pacific" = "chocol
       dplyr::filter(df_bco, country %in% input$c_countries & region %in% input$c_regions)
     })
     
-    col_reg <- c( "Euroe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
+    col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
     
     # Average price in a bar (Country level)
     output$plot5 <-  renderPlotly ({
