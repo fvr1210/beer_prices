@@ -1,0 +1,157 @@
+country;code;city;cc;region;asmp;abp;aop;markup;N_H_E;source;minutes
+Netherlands;NLD;Amsterdam;Amsterdam (NLD);Europe & Central Asia;0.88;5.17;3.03;5.9;15;in the supermarket;4
+Greece;GRC;Athens;Athens (GRC);Europe & Central Asia;0.9;6.72;3.81;7.5;8;in the supermarket;7
+New Zealand;NZL;Auckland;Auckland (NZL);East Asia & Pacific;1.67;5.88;3.78;3.5;19;in the supermarket;5
+Thailand;THA;Bangkok;Bangkok (THA);East Asia & Pacific;1.1;3.12;2.11;2.8;5;in the supermarket;13
+Spain;ESP;Barcelona;Barcelona (ESP);Europe & Central Asia;0.68;7.02;3.85;10.3;13;in the supermarket;3
+China;CHN;Beijing;Beijing (CHN);East Asia & Pacific;1.39;6.35;3.87;4.6;4;in the supermarket;21
+Germany;DEU;Berlin;Berlin (DEU);Europe & Central Asia;0.79;4.37;2.58;5.5;18;in the supermarket;3
+Colombia;COL;Bogota;Bogota (COL);Latin America & Caribbean;1.26;3.55;2.4;2.8;6;in the supermarket;13
+Slovakia;SVK;Bratislava;Bratislava (SVK);Europe & Central Asia;1.15;2.22;1.69;1.9;8;in the supermarket;9
+Belgium;BEL;Brussels;Brussels (BEL);Europe & Central Asia;1.19;5.17;3.18;4.3;16;in the supermarket;4
+Romania;ROU;Bucharest;Bucharest (ROU);Europe & Central Asia;0.7;4.96;2.83;7.1;4;in the supermarket;10
+Hungary;HUN;Budapest;Budapest (HUN);Europe & Central Asia;0.82;3.9;2.36;4.8;4;in the supermarket;12
+Argentina;ARG;Buenos Aires;Buenos Aires (ARG);Latin America & Caribbean;0.92;7.8;4.36;8.5;7;in the supermarket;8
+Egypt;EGY;Cairo;Cairo (EGY);Middle East & North Africa;0.95;3.27;2.11;3.4;2;in the supermarket;28
+USA;USA;Chicago;Chicago (USA);North America;1.37;5.76;3.56;4.2;23;in the supermarket;4
+Denmark;DNK;Copenhagen;Copenhagen (DNK);Europe & Central Asia;1.48;6.93;4.21;4.7;16;in the supermarket;6
+Ireland;IRL;Dublin;Dublin (IRL);Europe & Central Asia;1.47;6.28;3.88;4.3;17;in the supermarket;5
+Germany;DEU;Frankfurt;Frankfurt (DEU);Europe & Central Asia;0.83;5.54;3.19;6.7;18;in the supermarket;3
+Switzerland;CHE;Geneva;Geneva (CHE);Europe & Central Asia;1.87;10.77;6.32;5.8;37;in the supermarket;3
+Finland;FIN;Helsinki;Helsinki (FIN);Europe & Central Asia;1.64;8.17;4.91;5;17;in the supermarket;6
+Hong Kong;HKG;Hong Kong;Hong Kong (HKG);East Asia & Pacific;1.46;10.86;6.16;7.4;14;in the supermarket;6
+Turkey;TUR;Istanbul;Istanbul (TUR);Europe & Central Asia;2.15;4.4;3.28;2;7;in the supermarket;18
+Ukraine;UKR;Kiev;Kiev (UKR);Europe & Central Asia;0.97;2.36;1.66;2.4;2;in the supermarket;29
+Malaysia;MYS;Kuala Lumpur;Kuala Lumpur (MYS);East Asia & Pacific;2.01;6.55;4.28;3.3;6;in the supermarket;20
+Peru;PER;Lima;Lima (PER);Latin America & Caribbean;1.26;3.78;2.52;3;5;in the supermarket;15
+Portugal;PRT;Lisbon;Lisbon (PRT);Europe & Central Asia;0.9;4.25;2.58;4.7;9;in the supermarket;6
+Slovenia;SVN;Ljubljana;Ljubljana (SVN);Europe & Central Asia;1.16;4.25;2.71;3.7;9;in the supermarket;8
+UK;GBR;London;London (GBR);Europe & Central Asia;1.69;7.35;4.52;4.3;20;in the supermarket;5
+USA;USA;Los Angeles;Los Angeles (USA);North America;1.87;4.61;3.24;2.5;24;in the supermarket;5
+Luxembourg;LUX;Luxembourg;Luxembourg (LUX);Europe & Central Asia;1.02;6.16;3.59;6;26;in the supermarket;2
+Spain;ESP;Madrid;Madrid (ESP);Europe & Central Asia;0.88;4.48;2.68;5.1;12;in the supermarket;4
+Philippines;PHL;Manila;Manila (PHL);East Asia & Pacific;0.61;3.94;2.28;6.5;2;in the supermarket;18
+Mexico;MEX;Mexico City;Mexico City (MEX);Latin America & Caribbean;0.88;3.03;1.96;3.4;4;in the supermarket;13
+USA;USA;Miami;Miami (USA);North America;1.29;8.97;5.13;7;25;in the supermarket;3
+Italy;ITA;Milan;Milan (ITA);Europe & Central Asia;1.1;7.02;4.06;6.4;14;in the supermarket;5
+Russia;RUS;Moscow;Moscow (RUS);Europe & Central Asia;2.49;5.46;3.98;2.2;6;in the supermarket;25
+Germany;DEU;Munich;Munich (DEU);Europe & Central Asia;0.91;5.32;3.11;5.8;18;in the supermarket;3
+USA;USA;New York;New York (USA);North America;1.44;8.97;5.2;6.2;27;in the supermarket;3
+Norway;NOR;Oslo;Oslo (NOR);Europe & Central Asia;3.45;7.17;5.31;2.1;22;in the supermarket;9
+France;FRA;Paris;Paris (FRA);Europe & Central Asia;1.08;7.39;4.24;6.8;18;in the supermarket;4
+Czech Republic;CZE;Prague;Prague (CZE);Europe & Central Asia;1.02;4.32;2.67;4.2;6;in the supermarket;10
+Brazil;BRA;Rio de Janeiro;Rio de Janeiro (BRA);Latin America & Caribbean;1.09;5.15;3.12;4.7;8;in the supermarket;8
+Italy;ITA;Rome;Rome (ITA);Europe & Central Asia;1.02;8.13;4.57;8;15;in the supermarket;4
+Bulgaria;BGR;Sofia;Sofia (BGR);Europe & Central Asia;1.15;3.44;2.29;3;3;in the supermarket;23
+Sweden;SWE;Stockholm;Stockholm (SWE);Europe & Central Asia;1.34;5.95;3.65;4.4;17;in the supermarket;5
+Australia;AUS;Sydney;Sydney (AUS);East Asia & Pacific;2.37;6.56;4.46;2.8;23;in the supermarket;6
+Israel;ISR;Tel Aviv;Tel Aviv (ISR);Middle East & North Africa;2.06;9.53;5.79;4.6;13;in the supermarket;10
+Japan;JPN;Tokyo;Tokyo (JPN);East Asia & Pacific;2.38;7.17;4.77;3;19;in the supermarket;8
+Canada;CAN;Toronto;Toronto (CAN);North America;1.64;4.91;3.27;3;19;in the supermarket;5
+Austria;AUT;Vienna;Vienna (AUT);Europe & Central Asia;1.18;5.73;3.45;4.9;19;in the supermarket;4
+Poland;POL;Warsaw;Warsaw (POL);Europe & Central Asia;0.7;3.6;2.15;5.1;6;in the supermarket;7
+Switzerland;CHE;Zurich;Zurich (CHE);Europe & Central Asia;1.66;7.53;4.6;4.5;38;in the supermarket;3
+Netherlands;NLD;Amsterdam;Amsterdam (NLD);Europe & Central Asia;0.88;5.17;3.03;5.9;15;at the hotel bar;21
+Greece;GRC;Athens;Athens (GRC);Europe & Central Asia;0.9;6.72;3.81;7.5;8;at the hotel bar;50
+New Zealand;NZL;Auckland;Auckland (NZL);East Asia & Pacific;1.67;5.88;3.78;3.5;19;at the hotel bar;19
+Thailand;THA;Bangkok;Bangkok (THA);East Asia & Pacific;1.1;3.12;2.11;2.8;5;at the hotel bar;37
+Spain;ESP;Barcelona;Barcelona (ESP);Europe & Central Asia;0.68;7.02;3.85;10.3;13;at the hotel bar;32
+China;CHN;Beijing;Beijing (CHN);East Asia & Pacific;1.39;6.35;3.87;4.6;4;at the hotel bar;95
+Germany;DEU;Berlin;Berlin (DEU);Europe & Central Asia;0.79;4.37;2.58;5.5;18;at the hotel bar;15
+Colombia;COL;Bogota;Bogota (COL);Latin America & Caribbean;1.26;3.55;2.4;2.8;6;at the hotel bar;36
+Slovakia;SVK;Bratislava;Bratislava (SVK);Europe & Central Asia;1.15;2.22;1.69;1.9;8;at the hotel bar;17
+Belgium;BEL;Brussels;Brussels (BEL);Europe & Central Asia;1.19;5.17;3.18;4.3;16;at the hotel bar;19
+Romania;ROU;Bucharest;Bucharest (ROU);Europe & Central Asia;0.7;4.96;2.83;7.1;4;at the hotel bar;74
+Hungary;HUN;Budapest;Budapest (HUN);Europe & Central Asia;0.82;3.9;2.36;4.8;4;at the hotel bar;58
+Argentina;ARG;Buenos Aires;Buenos Aires (ARG);Latin America & Caribbean;0.92;7.8;4.36;8.5;7;at the hotel bar;67
+Egypt;EGY;Cairo;Cairo (EGY);Middle East & North Africa;0.95;3.27;2.11;3.4;2;at the hotel bar;98
+USA;USA;Chicago;Chicago (USA);North America;1.37;5.76;3.56;4.2;23;at the hotel bar;15
+Denmark;DNK;Copenhagen;Copenhagen (DNK);Europe & Central Asia;1.48;6.93;4.21;4.7;16;at the hotel bar;26
+Ireland;IRL;Dublin;Dublin (IRL);Europe & Central Asia;1.47;6.28;3.88;4.3;17;at the hotel bar;22
+Germany;DEU;Frankfurt;Frankfurt (DEU);Europe & Central Asia;0.83;5.54;3.19;6.7;18;at the hotel bar;18
+Switzerland;CHE;Geneva;Geneva (CHE);Europe & Central Asia;1.87;10.77;6.32;5.8;37;at the hotel bar;17
+Finland;FIN;Helsinki;Helsinki (FIN);Europe & Central Asia;1.64;8.17;4.91;5;17;at the hotel bar;29
+Hong Kong;HKG;Hong Kong;Hong Kong (HKG);East Asia & Pacific;1.46;10.86;6.16;7.4;14;at the hotel bar;47
+Turkey;TUR;Istanbul;Istanbul (TUR);Europe & Central Asia;2.15;4.4;3.28;2;7;at the hotel bar;38
+Ukraine;UKR;Kiev;Kiev (UKR);Europe & Central Asia;0.97;2.36;1.66;2.4;2;at the hotel bar;71
+Malaysia;MYS;Kuala Lumpur;Kuala Lumpur (MYS);East Asia & Pacific;2.01;6.55;4.28;3.3;6;at the hotel bar;66
+Peru;PER;Lima;Lima (PER);Latin America & Caribbean;1.26;3.78;2.52;3;5;at the hotel bar;45
+Portugal;PRT;Lisbon;Lisbon (PRT);Europe & Central Asia;0.9;4.25;2.58;4.7;9;at the hotel bar;28
+Slovenia;SVN;Ljubljana;Ljubljana (SVN);Europe & Central Asia;1.16;4.25;2.71;3.7;9;at the hotel bar;28
+UK;GBR;London;London (GBR);Europe & Central Asia;1.69;7.35;4.52;4.3;20;at the hotel bar;22
+USA;USA;Los Angeles;Los Angeles (USA);North America;1.87;4.61;3.24;2.5;24;at the hotel bar;12
+Luxembourg;LUX;Luxembourg;Luxembourg (LUX);Europe & Central Asia;1.02;6.16;3.59;6;26;at the hotel bar;14
+Spain;ESP;Madrid;Madrid (ESP);Europe & Central Asia;0.88;4.48;2.68;5.1;12;at the hotel bar;22
+Philippines;PHL;Manila;Manila (PHL);East Asia & Pacific;0.61;3.94;2.28;6.5;2;at the hotel bar;118
+Mexico;MEX;Mexico City;Mexico City (MEX);Latin America & Caribbean;0.88;3.03;1.96;3.4;4;at the hotel bar;45
+USA;USA;Miami;Miami (USA);North America;1.29;8.97;5.13;7;25;at the hotel bar;22
+Italy;ITA;Milan;Milan (ITA);Europe & Central Asia;1.1;7.02;4.06;6.4;14;at the hotel bar;30
+Russia;RUS;Moscow;Moscow (RUS);Europe & Central Asia;2.49;5.46;3.98;2.2;6;at the hotel bar;55
+Germany;DEU;Munich;Munich (DEU);Europe & Central Asia;0.91;5.32;3.11;5.8;18;at the hotel bar;18
+USA;USA;New York;New York (USA);North America;1.44;8.97;5.2;6.2;27;at the hotel bar;20
+Norway;NOR;Oslo;Oslo (NOR);Europe & Central Asia;3.45;7.17;5.31;2.1;22;at the hotel bar;20
+France;FRA;Paris;Paris (FRA);Europe & Central Asia;1.08;7.39;4.24;6.8;18;at the hotel bar;25
+Czech Republic;CZE;Prague;Prague (CZE);Europe & Central Asia;1.02;4.32;2.67;4.2;6;at the hotel bar;43
+Brazil;BRA;Rio de Janeiro;Rio de Janeiro (BRA);Latin America & Caribbean;1.09;5.15;3.12;4.7;8;at the hotel bar;39
+Italy;ITA;Rome;Rome (ITA);Europe & Central Asia;1.02;8.13;4.57;8;15;at the hotel bar;33
+Bulgaria;BGR;Sofia;Sofia (BGR);Europe & Central Asia;1.15;3.44;2.29;3;3;at the hotel bar;69
+Sweden;SWE;Stockholm;Stockholm (SWE);Europe & Central Asia;1.34;5.95;3.65;4.4;17;at the hotel bar;21
+Australia;AUS;Sydney;Sydney (AUS);East Asia & Pacific;2.37;6.56;4.46;2.8;23;at the hotel bar;17
+Israel;ISR;Tel Aviv;Tel Aviv (ISR);Middle East & North Africa;2.06;9.53;5.79;4.6;13;at the hotel bar;44
+Japan;JPN;Tokyo;Tokyo (JPN);East Asia & Pacific;2.38;7.17;4.77;3;19;at the hotel bar;23
+Canada;CAN;Toronto;Toronto (CAN);North America;1.64;4.91;3.27;3;19;at the hotel bar;16
+Austria;AUT;Vienna;Vienna (AUT);Europe & Central Asia;1.18;5.73;3.45;4.9;19;at the hotel bar;18
+Poland;POL;Warsaw;Warsaw (POL);Europe & Central Asia;0.7;3.6;2.15;5.1;6;at the hotel bar;36
+Switzerland;CHE;Zurich;Zurich (CHE);Europe & Central Asia;1.66;7.53;4.6;4.5;38;at the hotel bar;12
+Netherlands;NLD;Amsterdam;Amsterdam (NLD);Europe & Central Asia;0.88;5.17;3.03;5.9;15;Overall;12
+Greece;GRC;Athens;Athens (GRC);Europe & Central Asia;0.9;6.72;3.81;7.5;8;Overall;29
+New Zealand;NZL;Auckland;Auckland (NZL);East Asia & Pacific;1.67;5.88;3.78;3.5;19;Overall;12
+Thailand;THA;Bangkok;Bangkok (THA);East Asia & Pacific;1.1;3.12;2.11;2.8;5;Overall;25
+Spain;ESP;Barcelona;Barcelona (ESP);Europe & Central Asia;0.68;7.02;3.85;10.3;13;Overall;18
+China;CHN;Beijing;Beijing (CHN);East Asia & Pacific;1.39;6.35;3.87;4.6;4;Overall;58
+Germany;DEU;Berlin;Berlin (DEU);Europe & Central Asia;0.79;4.37;2.58;5.5;18;Overall;9
+Colombia;COL;Bogota;Bogota (COL);Latin America & Caribbean;1.26;3.55;2.4;2.8;6;Overall;24
+Slovakia;SVK;Bratislava;Bratislava (SVK);Europe & Central Asia;1.15;2.22;1.69;1.9;8;Overall;13
+Belgium;BEL;Brussels;Brussels (BEL);Europe & Central Asia;1.19;5.17;3.18;4.3;16;Overall;12
+Romania;ROU;Bucharest;Bucharest (ROU);Europe & Central Asia;0.7;4.96;2.83;7.1;4;Overall;42
+Hungary;HUN;Budapest;Budapest (HUN);Europe & Central Asia;0.82;3.9;2.36;4.8;4;Overall;35
+Argentina;ARG;Buenos Aires;Buenos Aires (ARG);Latin America & Caribbean;0.92;7.8;4.36;8.5;7;Overall;37
+Egypt;EGY;Cairo;Cairo (EGY);Middle East & North Africa;0.95;3.27;2.11;3.4;2;Overall;63
+USA;USA;Chicago;Chicago (USA);North America;1.37;5.76;3.56;4.2;23;Overall;9
+Denmark;DNK;Copenhagen;Copenhagen (DNK);Europe & Central Asia;1.48;6.93;4.21;4.7;16;Overall;16
+Ireland;IRL;Dublin;Dublin (IRL);Europe & Central Asia;1.47;6.28;3.88;4.3;17;Overall;14
+Germany;DEU;Frankfurt;Frankfurt (DEU);Europe & Central Asia;0.83;5.54;3.19;6.7;18;Overall;11
+Switzerland;CHE;Geneva;Geneva (CHE);Europe & Central Asia;1.87;10.77;6.32;5.8;37;Overall;10
+Finland;FIN;Helsinki;Helsinki (FIN);Europe & Central Asia;1.64;8.17;4.91;5;17;Overall;17
+Hong Kong;HKG;Hong Kong;Hong Kong (HKG);East Asia & Pacific;1.46;10.86;6.16;7.4;14;Overall;26
+Turkey;TUR;Istanbul;Istanbul (TUR);Europe & Central Asia;2.15;4.4;3.28;2;7;Overall;28
+Ukraine;UKR;Kiev;Kiev (UKR);Europe & Central Asia;0.97;2.36;1.66;2.4;2;Overall;50
+Malaysia;MYS;Kuala Lumpur;Kuala Lumpur (MYS);East Asia & Pacific;2.01;6.55;4.28;3.3;6;Overall;43
+Peru;PER;Lima;Lima (PER);Latin America & Caribbean;1.26;3.78;2.52;3;5;Overall;30
+Portugal;PRT;Lisbon;Lisbon (PRT);Europe & Central Asia;0.9;4.25;2.58;4.7;9;Overall;17
+Slovenia;SVN;Ljubljana;Ljubljana (SVN);Europe & Central Asia;1.16;4.25;2.71;3.7;9;Overall;18
+UK;GBR;London;London (GBR);Europe & Central Asia;1.69;7.35;4.52;4.3;20;Overall;14
+USA;USA;Los Angeles;Los Angeles (USA);North America;1.87;4.61;3.24;2.5;24;Overall;8
+Luxembourg;LUX;Luxembourg;Luxembourg (LUX);Europe & Central Asia;1.02;6.16;3.59;6;26;Overall;8
+Spain;ESP;Madrid;Madrid (ESP);Europe & Central Asia;0.88;4.48;2.68;5.1;12;Overall;13
+Philippines;PHL;Manila;Manila (PHL);East Asia & Pacific;0.61;3.94;2.28;6.5;2;Overall;68
+Mexico;MEX;Mexico City;Mexico City (MEX);Latin America & Caribbean;0.88;3.03;1.96;3.4;4;Overall;29
+USA;USA;Miami;Miami (USA);North America;1.29;8.97;5.13;7;25;Overall;12
+Italy;ITA;Milan;Milan (ITA);Europe & Central Asia;1.1;7.02;4.06;6.4;14;Overall;17
+Russia;RUS;Moscow;Moscow (RUS);Europe & Central Asia;2.49;5.46;3.98;2.2;6;Overall;40
+Germany;DEU;Munich;Munich (DEU);Europe & Central Asia;0.91;5.32;3.11;5.8;18;Overall;10
+USA;USA;New York;New York (USA);North America;1.44;8.97;5.2;6.2;27;Overall;12
+Norway;NOR;Oslo;Oslo (NOR);Europe & Central Asia;3.45;7.17;5.31;2.1;22;Overall;14
+France;FRA;Paris;Paris (FRA);Europe & Central Asia;1.08;7.39;4.24;6.8;18;Overall;14
+Czech Republic;CZE;Prague;Prague (CZE);Europe & Central Asia;1.02;4.32;2.67;4.2;6;Overall;27
+Brazil;BRA;Rio de Janeiro;Rio de Janeiro (BRA);Latin America & Caribbean;1.09;5.15;3.12;4.7;8;Overall;23
+Italy;ITA;Rome;Rome (ITA);Europe & Central Asia;1.02;8.13;4.57;8;15;Overall;18
+Bulgaria;BGR;Sofia;Sofia (BGR);Europe & Central Asia;1.15;3.44;2.29;3;3;Overall;46
+Sweden;SWE;Stockholm;Stockholm (SWE);Europe & Central Asia;1.34;5.95;3.65;4.4;17;Overall;13
+Australia;AUS;Sydney;Sydney (AUS);East Asia & Pacific;2.37;6.56;4.46;2.8;23;Overall;12
+Israel;ISR;Tel Aviv;Tel Aviv (ISR);Middle East & North Africa;2.06;9.53;5.79;4.6;13;Overall;27
+Japan;JPN;Tokyo;Tokyo (JPN);East Asia & Pacific;2.38;7.17;4.77;3;19;Overall;15
+Canada;CAN;Toronto;Toronto (CAN);North America;1.64;4.91;3.27;3;19;Overall;10
+Austria;AUT;Vienna;Vienna (AUT);Europe & Central Asia;1.18;5.73;3.45;4.9;19;Overall;11
+Poland;POL;Warsaw;Warsaw (POL);Europe & Central Asia;0.7;3.6;2.15;5.1;6;Overall;22
+Switzerland;CHE;Zurich;Zurich (CHE);Europe & Central Asia;1.66;7.53;4.6;4.5;38;Overall;7

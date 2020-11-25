@@ -61,9 +61,9 @@ bd_2$code <- countrycode(sourcevar = bd_2[["country"]],
                                   origin = "country.name",
                                   destination = "iso3c")
 
-bd_2$flag_code <- countrycode(sourcevar = bd_2[["country"]],
-                         origin = "country.name",
-                         destination = "iso2c") # is needed later visualasing with flags
+# bd_2$flag_code <- countrycode(sourcevar = bd_2[["country"]],
+#                          origin = "country.name",
+#                          destination = "iso2c") # is needed later visualasing with flags... not needed so far
 bd_2$flag_code <- tolower(bd_2$flag_code)
 
 bd_2$cc <- paste(bd_2$CITY, " (", bd_2$code, ")", sep = "")
@@ -86,46 +86,47 @@ bc_gho <- read_delim("raw-data/alcahol_consumption_capita_gho.csv", delim = ";" 
 bd_2_gho <- left_join(bd_2, bc_gho, by="code") 
 
 
-# Scraping data from wikipedia
-library(XML)
-library(rvest)
-library(robotstxt)
+# Scraping data from wikipedia, since this data could change it is saved and the scraping is only done once 
+# library(XML)
+# library(rvest)
+# library(robotstxt)
+# 
+# # Testen ob scrapping erlaubt ist ----
+# paths_allowed(
+#   paths = c("https://en.wikipedia.org/wiki/List_of_countries_by_beer_consumption_per_capita")
+# )
+# 
+# #Ist erlaubt
+# 
+# url <- "https://en.wikipedia.org/wiki/List_of_countries_by_beer_consumption_per_capita"
+# 
+# 
+# # Scraping der Wikipediaseite über Schweizergemeinden (Stand:2019) ----
+# beer.table = url %>%
+#   read_html() %>%
+#   html_node(xpath = '//*[@id="mw-content-text"]/div/table[1]') %>%
+#   html_table(fill = TRUE) 
+# 
+# # has a lot of empty or not usefull cells, usfull infromation from row 63 to row 123 and from the first to the sixth colum
+# beer.table <- beer.table[63:123,] 
+# beer.table <- beer.table[,1:6] 
+# names(beer.table) <- beer.table[1,]
+# bd_w <- beer.table[-1,]
+# bd_w$`Consumptionper capita[1](litres per year)` <- as.numeric(bd_w$`Consumptionper capita[1](litres per year)`)
+# 
+# bd_w$code <- countrycode(sourcevar = bd_w[["Country"]],
+#                          origin = "country.name",
+#                            destination = "iso3c")
+# 
+# write_delim(bd_w, "raw-data/beer_consumption_wiki.csv", delim = ";")
 
-# Testen ob scrapping erlaubt ist ----
-paths_allowed(
-  paths = c("https://en.wikipedia.org/wiki/List_of_countries_by_beer_consumption_per_capita")
-)
+bd_w <- read_delim("raw-data/beer_consumption_wiki.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
+  mutate(year=2015)
 
-#Ist erlaubt
-
-url <- "https://en.wikipedia.org/wiki/List_of_countries_by_beer_consumption_per_capita"
-
-
-# Scraping der Wikipediaseite über Schweizergemeinden (Stand:2019) ----
-beer.table = url %>%
-  read_html() %>%
-  html_node(xpath = '//*[@id="mw-content-text"]/div/table[1]') %>%
-  html_table(fill = TRUE) 
-
-# has a lot of empty or not usefull cells, usfull infromation from row 63 to row 123 and from the first to the sixth colum
-beer.table <- beer.table[63:123,] 
-beer.table <- beer.table[,1:6] 
-names(beer.table) <- beer.table[1,]
-bd_w <- beer.table
-
-bd_w$code <- countrycode(sourcevar = bd_w[["Country"]],
-                         origin = "country.name",
-                         destination = "iso3c")
  
 # leftjoin with dataset from goEurop and GHO, Wiki has no data for United Arab Emirates, Paraguay, Greece, Colombia, Argentina, 
 # Egypt, Ukraine, Peru, Luxembourg, Philippines, Russia, Norway, Iceland, Chile, Sweden
 bd_2_gho_w <- left_join(bd_2_gho, bd_w, by="code") 
-
-
-# add rank based on the diffrent values
-bd_2_gho_w$r_ge <- rank(-bd_2_gho_w$`BEER PER CAPITA/YEAR (LITERS)`, ties.method = "max")
-bd_2_gho_w$r_gho <- rank(-bd_2_gho_w$`2015`, ties.method = "max") # for the GHO Data I chose the data from year 2015
-bd_2_gho_w$r_wiki <- rank(-as.numeric(bd_2_gho_w$`Consumptionper capita[1](litres per year)`), ties.method = "max")
 
 
 
@@ -141,22 +142,16 @@ gni <- read_delim("raw-data/gni_per_capita_wordlbank.csv", delim = "," , locale 
   
 bd_2_gho_w_gni <- bd_2_gho_w <- left_join(bd_2_gho_w, gni, by="code")
 
-# cleaning and renaming the bd_2_gho_w dataset 
+# cleaning and renaming the bd_2_gho_w_gni dataset ----
 df_cr <- bd_2_gho_w_gni %>% 
   rename("city" = "CITY",  "asmp" = `AVERAGE SUPERMARKET PRICE $`, "abp" = `BAR PRICE $`, "aop" =`OVERALL PRICE $`, 
          "bpc_ge" = `BEER PER CAPITA/YEAR (LITERS)`, "country" = country.x, 
-         "bpc_gho" = `2015`, "bpc_wiki" = `Consumptionper capita[1](litres per year)`, # choocing the year 2015 for the GHO data because the study from goEurop is 2015
+         "bpc_gho" = `2015`, "bpc_wiki" =`Consumptionper capita[1](litres per year)`, # choocing the year 2015 for the GHO data because the study from goEurop is 2015
           "gni_atlas" = `GNI per capita, Atlas method (current US$)`) %>% 
-  select(c(country, code, city, cc, flag_code, region, asmp, abp, markup, aop, bpc_ge,  bpc_gho, bpc_wiki, r_ge, r_gho, r_wiki, gni_atlas ))
-
-# add calculations: how much beer you can buy at average (gni/price)
-df_cr_gni <- df_cr %>% 
-  mutate(be_gni_sm = round(gni_atlas/asmp, 1)) %>% 
-  mutate(be_gni_bp = round(gni_atlas/abp, 1)) %>% 
-  mutate(be_gni_op = round(gni_atlas/aop, 1)) 
+  select(c(country, code, city, cc,  region, asmp, abp, aop, markup, bpc_ge,  bpc_gho, bpc_wiki, gni_atlas ))
 
 
-# add average net hourly earnings from UBS data  
+# add average net hourly earnings from UBS data ---  
 av_earning <- read_excel("raw-data/UBS_PricesAndEarnings_OpenData.xlsx") %>% 
   filter(Year==2015) %>%  # choosing again 2015
   filter(`Main Section`=="Earnings: Average hourly (net)") %>% 
@@ -164,38 +159,62 @@ av_earning <- read_excel("raw-data/UBS_PricesAndEarnings_OpenData.xlsx") %>%
   rename("city" = "City") %>%  # for the joing with wc_data
   rename("N_H_E" = "Value") %>% 
   mutate(N_H_E = round(as.numeric(N_H_E, 2)))%>% 
+  mutate(city = str_replace(city, "ó", "o")) %>% 
+  mutate(city = str_replace(city, "á", "a")) %>% 
   select(c(city, N_H_E)) 
 
-df_gni_ae <- left_join(df_cr_gni, av_earning) 
+df_cr_ae <- left_join(df_cr, av_earning) # no data for abu Dhabi, Ascuncion, bali, belgrad, boston, carpe town, delhi, dubrovnik, edinburgh, ho chi minh city, krakow, leeds, liverpool, malaga, nice, reykjavik, san francisco, santiago, seville, singapore, strasbourg, the hague, venice
 
-# calculate how long you have to work for a bear
-df_f <- df_gni_ae %>% 
+
+# calculate how long you have to work for a bear (Beer Index)
+df_cr_ae <- df_cr_ae %>% 
   mutate(smbi = round(asmp/N_H_E*60)) %>%  # Supermarket beer index in Minutes
   mutate(bbi = round(abp/N_H_E*60)) %>%  # Supermarket beer index
   mutate(obi = round(aop/N_H_E*60))
+
+# make long form for bar plot to compare beer index 
+df_cr_ae_long <- df_cr_ae %>% 
+  gather(source, minutes, smbi, bbi, obi) %>% 
+  filter(!is.na(minutes)) %>%  # use only those with data
+  mutate(source = recode(source, bbi = "at the hotel bar", smbi = "in the supermarket", obi = "Overall"))  # recode for plot
+
   
-# calculating prices on country and region level (https://stackoverflow.com/questions/11562656/calculate-the-mean-by-group)
-bdc <- df_f %>% group_by(country) %>% 
+# save data on city level ----
+df_city_wide <- df_cr_ae %>% select(-c(bpc_ge,  bpc_gho, bpc_wiki, gni_atlas)) #not needed on city level
+df_city_long <- df_cr_ae_long %>% select(-c(bpc_ge,  bpc_gho, bpc_wiki, gni_atlas)) 
+
+write_delim(df_city_wide, "processed-data/beer_city_add_wide.csv", delim = ";") #city level
+write_delim(df_city_long, "processed-data/beer_city_add_long.csv", delim = ";") #city level
+
+
+# calculating prices on country level and remove the cities (55 countries) (https://stackoverflow.com/questions/11562656/calculate-the-mean-by-group)
+bdc <- df_cr %>% group_by(country) %>% 
   mutate(asmp = round(mean(asmp), 2)) %>% 
   mutate(abp = round(mean(abp), 2)) %>% 
   mutate(aop = round(mean(aop), 2)) %>% 
-  mutate(N_H_E)
   distinct (country, .keep_all = T) %>%  
   ungroup %>% 
   select(-c(city, cc))
 
-bdr <-  df_f %>% group_by(region) %>% 
-  mutate(asmp = round(mean(asmp), 2)) %>% 
-  mutate(abp = round(mean(abp), 2)) %>% 
-  mutate(aop = round(mean(aop), 2)) %>% 
-  distinct (region, .keep_all = T) %>%  
-  ungroup %>% 
-  select(-c(city, country))
+# # calculate price rank - most expensive rank 1 
+# bdc$r_asmp <- rank(-bdc$asmp, ties.method = "min")
+# bdc$r_abp <- rank(-bdc$abp, ties.method = "min") 
+# bdc$r_aop <- rank(-bdc$aop, ties.method = "min")
+# 
+# 
+# # calculate consumption rank - most consumption rank 1
+# bdc$r_ge <- rank(-bdc$bpc_ge, ties.method = "min")
+# bdc$r_gho <- rank(-bdc$bpc_gho, ties.method = "min") 
+# bdc$r_wiki <- rank(as.numeric(-bdc$bpc_wiki, na.rm = TRUE), ties.method = "min", na.last = TRUE)
+# 
 
-
+# add calculations: how much beer you can buy at average (gni/price)
+bdc <- bdc %>% 
+  mutate(be_gni_sm = round(gni_atlas/asmp)) %>% 
+  mutate(be_gni_bp = round(gni_atlas/abp)) %>% 
+  mutate(be_gni_op = round(gni_atlas/aop)) 
 
 
 # save
-write_delim(df_f, "processed-data/wwbp_city_add_var.csv", delim = ";") #city level
-write_delim(bdc, "processed-data/wwbp_country_add_var.csv", delim = ";") #country level
-write_delim(bdr, "processed-data/wwbp_region_add_var.csv", delim = ";") #region level
+write_delim(bdc, "processed-data/beer_country_add_wide.csv", delim = ";") #country level
+

@@ -1,0 +1,56 @@
+country;code;region;asmp;abp;aop;markup;bpc_ge;bpc_gho;bpc_wiki;gni_atlas;be_gni_sm;be_gni_bp;be_gni_op
+United Arab Emirates;ARE;Middle East & North Africa;1.17;8.14;4.66;7;8;0.23;NA;42860;36632;5265;9197
+Netherlands;NLD;Europe & Central Asia;0.92;4.8;2.87;5.9;86;4.04;78.1;49810;54141;10377;17355
+Paraguay;PRY;Latin America & Caribbean;1.04;2.93;1.98;2.8;83;3.13;NA;5620;5404;1918;2838
+Greece;GRC;Europe & Central Asia;0.9;6.72;3.81;7.5;53;2;NA;20320;22578;3024;5333
+New Zealand;NZL;East Asia & Pacific;1.67;5.88;3.78;3.5;77;3.28;65.5;40560;24287;6898;10730
+Indonesia;IDN;East Asia & Pacific;1.35;3;2.18;2.2;9;0.06;0.7;3430;2541;1143;1573
+Thailand;THA;East Asia & Pacific;1.1;3.12;2.11;2.8;36;1.86;27;5710;5191;1830;2706
+Spain;ESP;Europe & Central Asia;0.68;4.7;2.69;10.3;104;4.17;86;28430;41809;6049;10569
+China;CHN;East Asia & Pacific;1.39;6.35;3.87;4.6;35;1.74;29;7940;5712;1250;2052
+Serbia;SRB;Europe & Central Asia;0.6;3.34;1.97;5.6;119;2.96;54.7;5960;9933;1784;3025
+Germany;DEU;Europe & Central Asia;0.84;5.08;2.96;5.5;118;5.87;101.1;45850;54583;9026;15490
+Colombia;COL;Latin America & Caribbean;1.26;3.55;2.4;2.8;76;3.14;NA;7330;5817;2065;3054
+USA;USA;North America;1.48;6.8;4.14;4.1;85;4.13;73.5;56740;38338;8344;13705
+Slovakia;SVK;Europe & Central Asia;1.15;2.22;1.69;1.9;72;3.42;83.5;17670;15365;7959;10456
+Belgium;BEL;Europe & Central Asia;1.19;5.17;3.18;4.3;100;4.6;67;45540;38269;8809;14321
+Romania;ROU;Europe & Central Asia;0.7;4.96;2.83;7.1;133;5.22;98.9;9650;13786;1946;3410
+Hungary;HUN;Europe & Central Asia;0.82;3.9;2.36;4.8;89;3.92;76.8;13220;16122;3390;5602
+Argentina;ARG;Latin America & Caribbean;0.92;7.8;4.36;8.5;71;3.37;NA;12570;13663;1612;2883
+Egypt;EGY;Middle East & North Africa;0.95;3.27;2.11;3.4;4;0.11;NA;3360;3537;1028;1592
+South Africa;ZAF;Sub-Saharan Africa;1.08;3.2;2.14;3;98;4.01;60.1;6050;5602;1891;2827
+Denmark;DNK;Europe & Central Asia;1.48;6.93;4.21;4.7;80;3.45;59.6;60510;40885;8732;14373
+India;IND;South Asia;1.18;2.31;1.75;2;6;0.21;2;1600;1356;693;914
+Ireland;IRL;Europe & Central Asia;1.47;6.28;3.88;4.3;106;5.04;95.8;50350;34252;8018;12977
+Croatia;HRV;Europe & Central Asia;1.11;4.14;2.62;3.7;90;4.56;80.4;12970;11685;3133;4950
+UK;GBR;Europe & Central Asia;1.37;5.32;3.34;4.4;79;3.41;72.9;44290;32328;8325;13260
+Switzerland;CHE;Europe & Central Asia;1.77;9.15;5.46;5.8;63;3.17;55.5;85800;48475;9377;15714
+Finland;FIN;Europe & Central Asia;1.64;8.17;4.91;5;105;4.13;76.7;47150;28750;5771;9603
+Vietnam;VNM;East Asia & Pacific;0.99;2.58;1.78;2.6;119;2.66;42;1970;1990;764;1107
+Hong Kong;HKG;East Asia & Pacific;1.46;10.86;6.16;7.4;16;NA;21.2;41180;28205;3792;6685
+Turkey;TUR;Europe & Central Asia;2.15;4.4;3.28;2;23;0.82;13;11960;5563;2718;3646
+Ukraine;UKR;Europe & Central Asia;0.97;2.36;1.66;2.4;103;2.52;NA;2700;2784;1144;1627
+Poland;POL;Europe & Central Asia;0.66;3.15;1.9;4.4;127;5.82;98.2;13350;20227;4238;7026
+Malaysia;MYS;East Asia & Pacific;2.01;6.55;4.28;3.3;18;0.39;5.8;10680;5313;1631;2495
+Peru;PER;Latin America & Caribbean;1.26;3.78;2.52;3;71;3.06;NA;6340;5032;1677;2516
+Portugal;PRT;Europe & Central Asia;0.9;4.25;2.58;4.7;74;2.57;51;20440;22711;4809;7922
+Slovenia;SVN;Europe & Central Asia;1.16;4.25;2.71;3.7;95;5.73;80.2;22250;19181;5235;8210
+Luxembourg;LUX;Europe & Central Asia;1.02;6.16;3.59;6;79;4.02;NA;72470;71049;11765;20187
+Philippines;PHL;East Asia & Pacific;0.61;3.94;2.28;6.5;27;1.11;NA;3380;5541;858;1482
+Mexico;MEX;Latin America & Caribbean;0.88;3.03;1.96;3.4;101;3.59;68.7;10170;11557;3356;5189
+Italy;ITA;Europe & Central Asia;1.07;7.02;4.04;6.4;29;1.79;31;32980;30822;4698;8163
+Russia;RUS;Europe & Central Asia;2.49;5.46;3.98;2.2;106;3.65;NA;11780;4731;2158;2960
+France;FRA;Europe & Central Asia;1;6.28;3.64;6.2;43;2.16;33;41100;41100;6545;11291
+Norway;NOR;Europe & Central Asia;3.45;7.17;5.31;2.1;63;2.57;NA;93110;26988;12986;17535
+Czech Republic;CZE;Europe & Central Asia;1.02;4.32;2.67;4.2;130;6.87;191.8;18260;17902;4227;6839
+Iceland;ISL;Europe & Central Asia;1.53;4.95;3.24;3.2;82;4.26;NA;50160;32784;10133;15481
+Brazil;BRA;Latin America & Caribbean;1.09;5.15;3.12;4.7;97;4.08;60;10190;9349;1979;3266
+Chile;CHL;Latin America & Caribbean;1.03;3.53;2.28;3.4;53;2.85;NA;14130;13718;4003;6197
+Singapore;SGP;East Asia & Pacific;1.89;8.37;5.13;4.4;26;1.27;20.9;53160;28127;6351;10363
+Bulgaria;BGR;Europe & Central Asia;1.15;3.44;2.29;3;82;4.22;76.4;7450;6478;2166;3253
+Sweden;SWE;Europe & Central Asia;1.34;5.95;3.65;4.4;63;2.62;NA;58250;43470;9790;15959
+Australia;AUS;East Asia & Pacific;2.37;6.56;4.46;2.8;99;3.76;76.3;60500;25527;9223;13565
+Israel;ISR;Middle East & North Africa;2.06;9.53;5.79;4.6;23;1.56;17.4;36030;17490;3781;6223
+Japan;JPN;East Asia & Pacific;2.38;7.17;4.77;3;25;1.35;41.4;38840;16319;5417;8143
+Canada;CAN;North America;1.64;4.91;3.27;3;116;3.7;55.7;47570;29006;9688;14547
+Austria;AUT;Europe & Central Asia;1.18;5.73;3.45;4.9;95;6;107.6;47450;40212;8281;13754

@@ -13,10 +13,18 @@ library(DT)
 
 load.emojifont('OpenSansEmoji.ttf')
 
-df_bci <- read_delim("../../processed-data/wwbp_city_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
-df_bco <- read_delim("../../processed-data/wwbp_country_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
+#read city level data
+
+df_bci_wide <- read_delim("../../processed-data/beer_city_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+df_bci_long <- read_delim("../../processed-data/beer_city_add_long.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+
+df_bco <- read_delim("../../processed-data/beer_country_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
   mutate(label = c(emoji('beer')))
-df_br <- read_delim("../../processed-data/wwbp_region_add_var.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+
+
+introduction_text <-  read_file("../../processed-data/introduction.html", locale = locale(encoding = 'ISO-8859-2'))
+data_source_text <-  read_file("../../processed-data/data_source.html", locale = locale(encoding = 'ISO-8859-2'))
+data_final_text <-  read_file("../../processed-data/data_final.html", locale = locale(encoding = 'ISO-8859-2'))
 
 
 # Define UI for application that draws a histogram
@@ -32,72 +40,172 @@ ui <- dashboardPage(
                     margin-left: 10px;
                     margin-right: 10px;
                     }",
+                ".shiny-html-output {    
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    }",
                 ".action-button{ 
                     margin-left: 10px;
                     margin-top: -10px;
                     margin-bottom: 10px;
                     }",
-                ".control-label{ 
-                    margin-left: 10px;
+                ".shiny-options-group{ 
+                    margin-left: 15px;
                     }",
+                
+                ".control-label{ 
+                    margin-left: 15px;
+                    }",
+              
+                ".skin-blue .main-header .logo {
+                    background-color: #CDAA37;
+                  }", 
+                
+                ".skin-blue .main-header .logo:hover {
+                  background-color: #CDAA37;
+                }",
+                ".skin-blue .main-header .navbar {
+                    background-color: #D5BC26;
+                  }"  
 
               ))))         
         ),
     dashboardBody(
-      # define pages for sidebar
+      # Information 
       tabItems(
-        tabItem(tabName = "Charts_ci",
+        tabItem(tabName = "Intro_tx",
+                fluidRow(htmlOutput("introduction"))),
+        tabItem(tabName = "Source_tx",
+                fluidRow(htmlOutput("data_source"))),
+        tabItem(tabName = "Final_tx",
+                fluidRow(htmlOutput("data_final"))),
+        
+
+        
+        # City Level
+        # Prices
+        tabItem(tabName = "Price_ci",
+                
+                
                 fluidRow(
-                  checkboxGroupInput(inputId = "d_cc", label = "Show following Cities:", df_bci$cc, inline = T),
+                dropdownButton(
+                    tags$h3("List of Input"),
+                    circle = TRUE, status = "primary", icon = icon("gear"), width = "900px",
+                    tooltip = tooltipOptions(title = "Select cities, countries and regions"),
+                  checkboxGroupInput(inputId = "d_cc", label = "Show following Cities:", df_bci_wide$cc, inline = T),
                   actionButton("un_selectall_dci","Un/Select All"),  # action Links to select and unselect all (reactiv function in server, idea from https://stackoverflow.com/questions/28829682/r-shiny-checkboxgroupinput-select-all-checkboxes-by-click)
                   
                   
                   
-                  checkboxGroupInput(inputId = "d_countries",label = "Show cities in the following countries:", df_bci$country, inline = T),
+                  checkboxGroupInput(inputId = "d_countries",label = "Show cities in the following countries:", df_bci_wide$country, inline = T),
                   actionButton("un_selectall_dco","Un/Select All"),
                   
                   
-                  checkboxGroupInput(inputId = "d_regions",label = "Show cities in the following Regions:", df_bci$region, inline = T),
-                  actionButton("un_selectall_dre","Un/Select All"),
+                  checkboxGroupInput(inputId = "d_regions",label = "Show cities in the following Regions:", df_bci_wide$region, inline = T),
+                  actionButton("un_selectall_dre","Un/Select All"))),
                   
-                  
-                  tabBox(id = "cp", width=12,  #width of max 12 colums, hight not sure...
-                         tabPanel("Bar Prices", plotlyOutput("plot1")),
-                         tabPanel("Supermarket Prices", plotlyOutput("plot2")),
-                         tabPanel("Overall Prices", plotlyOutput("plot3")),
-                         tabPanel("Markup", plotlyOutput("plot4"))
+                fluidRow(
+                  tabBox(id = "cp", width=12,  
+                         tabPanel("Hotel Bar Prices", plotlyOutput("plot1"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                         tabPanel("Supermarket Prices", plotlyOutput("plot2"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                         tabPanel("Overall Prices", plotlyOutput("plot3"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                         tabPanel("Markup", plotlyOutput("plot4"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0")
                   ))),
         
+        # Beer Index
+        tabItem(tabName = "BI_ci",
+
+                fluidRow(
+                  dropdownButton(
+                    tags$h3("List of Input"),
+                    circle = TRUE, status = "primary", icon = icon("gear"), width = "900px",
+                    tooltip = tooltipOptions(title = "Select cities, countries and regions"),
+                   
+                    checkboxGroupInput(inputId = "d_cc_l", label = "Show following Cities:", df_bci_wide$cc, inline = T),
+                    actionButton("un_selectall_dci_l","Un/Select All"),  # action Links to select and unselect all (reactiv function in server, idea from https://stackoverflow.com/questions/28829682/r-shiny-checkboxgroupinput-select-all-checkboxes-by-click)
+
+
+
+                    checkboxGroupInput(inputId = "d_countries_l",label = "Show cities in the following countries:", df_bci_wide$country, inline = T),
+                    actionButton("un_selectall_dco_l","Un/Select All"),
+
+
+                    checkboxGroupInput(inputId = "d_regions_l",label = "Show cities in the following Regions:", df_bci_wide$region, inline = T),
+                    actionButton("un_selectall_dre_l","Un/Select All"))),
+                fluidRow(
+                  tabBox(id = "cp", width=12,  
+                         tabPanel("Bier Index", plotlyOutput("plot18"), 
+                                  radioButtons(inputId = "sort_by", label = "sort by", choices  =  c("Hotel bar prices", "Supermarket Prices", "Overall prices"), selected = "Hotel bar prices", inline = TRUE),
+                                  "Data: GoEuro, UBS earning, Graphic: Flavio von Rickenbach, CC-BY 4.0")
+                         ), 
+                  )),
+        
         tabItem(tabName = "Data_ci", width =8,
+                
+                
                   fluidRow(
-                    dataTableOutput("table_city")
+                    dataTableOutput("table_city_wide")
                   )
           ),
-        tabItem(tabName = "Charts_co",
-                fluidRow(
+        
+        #Section Country Level
+        
+        # Subsection Price 
+        tabItem(tabName = "Price_co",
+            fluidRow(
+              # use the same dropdownbutton for the other subsections
+              ddB_Co <- dropdownButton(
+                tags$h3("List of Input"),
+                circle = TRUE, status = "primary", icon = icon("gear"), width = "900px",
+                tooltip = tooltipOptions(title = "Select countries and regions"),
                   
                   checkboxGroupInput(inputId = "c_countries",label = "Show cities in the following countries:", df_bco$country, inline = T),
                   actionButton("un_selectall_cco","Un/Select All"),
                   
                   checkboxGroupInput(inputId = "c_regions",label = "Show cities in the following Regions:", df_bco$region, inline = T),
-                  actionButton("un_selectall_cre","Un/Select All"),
-                  
-                  
-                  tabBox(id = "cp", width=12,   #width of max 12 colums, hight not sure...
-                         tabPanel("Bar Prices", plotlyOutput("plot5")),
-                         tabPanel("Supermarket Prices", plotlyOutput("plot6")),
-                         tabPanel("Overall Prices", plotlyOutput("plot7")),
-                         tabPanel("Markup", plotlyOutput("plot8")),
-                         tabPanel("Beer Consumption (goEurope)", plotlyOutput("plot15")),
-                         tabPanel("Beer Consumption (GHO)", plotlyOutput("plot16")),
-                         tabPanel("Beer Consumption (Wikipedia)", plotlyOutput("plot17")),
-                         tabPanel("Price vs. Consumption (goEurope)", plotlyOutput("plot9")),
-                         tabPanel("Price vs. Consumption (GHO)", plotlyOutput("plot10")),
-                         tabPanel("Price vs. Consumption (Wikipedia)", plotlyOutput("plot11")),
-                         tabPanel("Beer buying Power Bar", plotlyOutput("plot12")),
-                         tabPanel("Beer buying Power Supermaket", plotlyOutput("plot13")),
-                         tabPanel("Beer buying Power Overall", plotlyOutput("plot14"))
+                  actionButton("un_selectall_cre","Un/Select All"))),
+            
+            fluidRow(
+                  tabBox(id = "cp", width=12,   
+                         tabPanel("Hotel Bar Prices", plotlyOutput("plot5"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                         tabPanel("Supermarket Prices", plotlyOutput("plot6"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                         tabPanel("Overall Prices", plotlyOutput("plot7"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                         tabPanel("Markup", plotlyOutput("plot8"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0")
                   ))),
+        
+      # Subsection Consumption       
+        tabItem(tabName = "Cons_co",
+                fluidRow(ddB_Co),
+
+                fluidRow(
+                  tabBox(id = "cd", width=12,   
+                         tabPanel("Beer Consumption (GoEuro)", plotlyOutput("plot15"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                         tabPanel("Beer Consumption (GHO)", plotlyOutput("plot16"), "Data: GHO, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                         tabPanel("Beer Consumption (Wikipedia)", plotlyOutput("plot17"), "Data: Wikipedia, Graphic: Flavio von Rickenbach, CC-BY 4.0")
+                  ))),
+      
+      tabItem(tabName = "PvC_co",
+              fluidRow(ddB_Co),
+              
+              fluidRow(
+                tabBox(id = "cd", width=12,   
+                       tabPanel("Price vs. Consumption (goEuroe)", plotlyOutput("plot9"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                       tabPanel("Price vs. Consumption (GHO)", plotlyOutput("plot10"), "Data: GoEuro, GHO, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                       tabPanel("Price vs. Consumption (Wikipedia)", plotlyOutput("plot11"),"Data: GoEuro, Wikipedia, Graphic: Flavio von Rickenbach, CC-BY 4.0")
+                ))),
+
+
+      # Subsection Beer Buying power   
+        tabItem(tabName = "BbP_co",
+                fluidRow(ddB_Co),
+
+                fluidRow(
+                  tabBox(id = "cd", width=12,   
+                         tabPanel("Beer buying Power Hotel Bar", plotlyOutput("plot12"), "Data: GoEuro, World Bank, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                         tabPanel("Beer buying Power Supermaket", plotlyOutput("plot13"), "Data: GoEuro, World Bank, Graphic: Flavio von Rickenbach, CC-BY 4.0"),
+                         tabPanel("Beer buying Power Overall", plotlyOutput("plot14"), "Data: GoEuro, World Bank, Graphic: Flavio von Rickenbach, CC-BY 4.0")
+                  ))),
+        
         
         tabItem(tabName = "Data_co", width =8,
                 fluidRow(
@@ -113,38 +221,54 @@ server <- function(input, output, session) {
 output$menu <- renderMenu({
 sidebarMenu(
   id = "tabs",
+  menuItem("Info", tabName = "Info_text", icon = icon("info"),
+      menuSubItem("Intro", tabName = "Intro_tx", icon = icon("")),
+      menuSubItem("Data Source", tabName = "Source_tx", icon = icon("")),
+      menuSubItem("Final Data", tabName = "Final_tx", icon = icon(""))),
   menuItem("City Level", tabName = "city_side", icon = icon("city"),
-           menuSubItem("Charts", tabName = "Charts_ci", icon = icon("")),
+           menuSubItem("Prices", tabName = "Price_ci", icon = icon("")),
+           menuSubItem("Beer Index", tabName = "BI_ci", icon = icon("")),
            menuSubItem("Data", tabName = "Data_ci", icon = icon(""))),
   
   menuItem("Country Level", tabName = "country_side", icon = icon("flag"),
-           menuSubItem("Charts", tabName = "Charts_co", icon = icon("data")),
+           menuSubItem("Prices", tabName = "Price_co", icon = icon("data")),
+           menuSubItem("Consumption", tabName = "Cons_co", icon = icon("data")),
+           menuSubItem("Price vs. Consumption", tabName = "PvC_co", icon = icon("data")),
+           menuSubItem("Bier buying Power", tabName = "BbP_co", icon = icon("data")),
            menuSubItem("Data", tabName = "Data_co", icon = icon("chart")))
 )
     })
-  
+
+
+# Read infotext for Frontpage
+
+output$introduction <- renderUI({HTML(introduction_text)})
+output$data_source <- renderUI({HTML(data_source_text)})
+output$data_final <- renderUI({HTML(data_final_text)})
+
+
   
   # City Level
   
   
   # Table with the Data
-  output$table_city <- renderDataTable({DT::datatable(df_bci, filter = "top", extensions = c('Buttons', 'Scroller'), 
+  output$table_city_wide <- renderDataTable({DT::datatable(df_bci_wide, filter = "top", extensions = c('Buttons', 'Scroller'), 
                                                       options = list(scrollY = 650,
                                                                      scrollX = 500,
                                                                      deferRender = TRUE,
                                                                       scroller = TRUE))}) # https://stackoverflow.com/questions/59681856/r-large-datatable-display-in-shiny
   
   
-  # un/select all cities
+  # un/select all cities wide
   observe({
     if (input$un_selectall_dci%%2 == 0) #don't know how and why this works...
     {
-      updateCheckboxGroupInput(session, "d_cc","Show following Cities:",choices=df_bci$cc, selected = df_bci$cc, inline=T)
+      updateCheckboxGroupInput(session, "d_cc","Show following Cities:",choices=df_bci_wide$cc, selected = df_bci_wide$cc, inline=T)
     }
     else if(input$un_selectall_dci == 0) return(NULL)
     else
     {
-      updateCheckboxGroupInput(session,"d_cc","Show following Cities:",choices=df_bci$cc, inline=T)
+      updateCheckboxGroupInput(session,"d_cc","Show following Cities:",choices=df_bci_wide$cc, inline=T)
     }
   })
 
@@ -152,12 +276,12 @@ sidebarMenu(
   observe({
     if (input$un_selectall_dco%%2== 0)
     {
-      updateCheckboxGroupInput(session, "d_countries","Show following Countries:",choices=sort(unique(df_bci$country)), selected = df_bci$country, inline=T)
+      updateCheckboxGroupInput(session, "d_countries","Show following Countries:",choices=sort(unique(df_bci_wide$country)), selected = df_bci_wide$country, inline=T)
     }
     else if(input$un_selectall_dco == 0) return(NULL)
     else
     {
-      updateCheckboxGroupInput(session,"d_countries","Show following Countries:",choices=sort(unique(df_bci$country)), inline=T) #use sort and unique that every country is only once shown
+      updateCheckboxGroupInput(session,"d_countries","Show following Countries:",choices=sort(unique(df_bci_wide$country)), inline=T) #use sort and unique that every country is only once shown
     }
   })
 
@@ -165,20 +289,70 @@ sidebarMenu(
   observe({
     if (input$un_selectall_dre%%2== 0)
     {
-      updateCheckboxGroupInput(session, "d_regions","Show following Regions:",choices=sort(unique(df_bci$region)), selected = df_bci$region, inline=T)
+      updateCheckboxGroupInput(session, "d_regions","Show following Regions:",choices=sort(unique(df_bci_wide$region)), selected = df_bci_wide$region, inline=T)
     }
     else if(input$un_selectall_dre == 0) return(NULL)
     else
     {
-      updateCheckboxGroupInput(session,"d_regions","Show following Regions:",choices=sort(unique(df_bci$region)), inline=T) #use sort and unique that every country is only once shown
+      updateCheckboxGroupInput(session,"d_regions","Show following Regions:",choices=sort(unique(df_bci_wide$region)), inline=T) #use sort and unique that every country is only once shown
     }
   })
 
+# reactive data wide
     df_bcir <- reactive({
-        dplyr::filter(df_bci, cc %in% input$d_cc & country %in% input$d_countries & region %in% input$d_regions)
+        dplyr::filter(df_bci_wide, cc %in% input$d_cc & country %in% input$d_countries & region %in% input$d_regions)
     })
     
-    col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
+    # un/select all cities long
+    observe({
+      if (input$un_selectall_dci%%2 == 0) #don't know how and why this works...
+      {
+        updateCheckboxGroupInput(session, "d_cc_l","Show following Cities:",choices=sort(unique(df_bci_long$cc)), selected = df_bci_long$cc, inline=T)
+      }
+      else if(input$un_selectall_dci == 0) return(NULL)
+      else
+      {
+        updateCheckboxGroupInput(session,"d_cc_l","Show following Cities:",choices=sort(unique(df_bci_long$cc)), inline=T)
+      }
+    })
+    
+    # un/select all countries
+    observe({
+      if (input$un_selectall_dco%%2== 0)
+      {
+        updateCheckboxGroupInput(session, "d_countries_l","Show following Countries:",choices=sort(unique(df_bci_long$country)), selected = df_bci_long$country, inline=T)
+      }
+      else if(input$un_selectall_dco == 0) return(NULL)
+      else
+      {
+        updateCheckboxGroupInput(session,"d_countries_l","Show following Countries:",choices=sort(unique(df_bci_long$country)), inline=T) #use sort and unique that every country is only once shown
+      }
+    })
+    
+    # un/select all regions
+    observe({
+      if (input$un_selectall_dre%%2== 0)
+      {
+        updateCheckboxGroupInput(session, "d_regions_l","Show following Regions:",choices=sort(unique(df_bci_long$region)), selected = df_bci_long$region, inline=T)
+      }
+      else if(input$un_selectall_dre == 0) return(NULL)
+      else
+      {
+        updateCheckboxGroupInput(session,"d_regions_l","Show following Regions:",choices=sort(unique(df_bci_long$region)), inline=T) #use sort and unique that every country is only once shown
+      }
+    })
+    
+    # reactive data long
+    df_bcir_l <- reactive({
+      dplyr::filter(df_bci_long, cc %in% input$d_cc_l & country %in% input$d_countries_l & region %in% input$d_regions_l)
+    })    
+    
+    
+    
+    
+    
+# colors for regions    
+col_reg <- c( "Euroe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
     
   
     # Average price in a bar (City level)
@@ -189,7 +363,7 @@ sidebarMenu(
         scale_x_discrete() +
         xlab("City") +
         ylab("$") +
-        ggtitle("Price for a 0.33L beer in a bar in USD in selected cities") +
+        ggtitle("Price for a 33cl beer in a hotel bar in $ in selected cities") +
         theme_bw() +
         theme(axis.text.x = element_text(angle = 90, size = 7)) +
         theme(legend.title = element_blank()) +
@@ -206,7 +380,7 @@ sidebarMenu(
         scale_x_discrete() +
         xlab("City") +
         ylab("$") +
-        ggtitle("Price for a 0.33L beer in a supermarket in USD in selected cities") +
+        ggtitle("Price for a 33cl beer in a supermarket in $ in selected cities") +
         theme_bw() +
         theme(axis.text.x = element_text(angle = 90, size = 7)) +
         theme(legend.title = element_blank()) +
@@ -223,7 +397,7 @@ sidebarMenu(
         scale_x_discrete() +
         xlab("City") +
         ylab("$") +
-        ggtitle("Overall price for a 0.33L beer in USD in selected cities") +
+        ggtitle("Overall price for a 33cl beer in $ in selected cities") +
         theme_bw() +
         theme(axis.text.x = element_text(angle = 90, size = 7)) +
         theme(legend.title = element_blank()) +
@@ -240,7 +414,7 @@ sidebarMenu(
         scale_x_discrete() +
         xlab("City") +
         ylab("Ratio") +
-        ggtitle("How much more does a beer cost in the bar than in the supermarket in selected cities") +
+        ggtitle("How many supermarket beers could you buy for the price of one hotel bar beer") +
         theme_bw() +
         theme(axis.text.x = element_text(angle = 90, size = 7)) +
         theme(legend.title = element_blank()) +
@@ -249,10 +423,89 @@ sidebarMenu(
       ggplotly(p_4, tooltip = "text") 
     })
     
- 
+
+# Beer Index Plot with if else to sort by different price sources
+    
+    # creat different order functions based on source (https://stackoverflow.com/questions/62011413/ggplot2-bar-chart-order-by-values-of-one-group)
+    sel_order_hb <- 
+      df_bci_long %>% 
+      filter(source == "at the hotel bar") %>% 
+      arrange(desc(minutes)) %>% 
+      mutate(city = factor(city))
+    
+    sel_order_sm <- 
+      df_bci_long %>% 
+      filter(source == "in the supermarket") %>% 
+      arrange(desc(minutes)) %>% 
+      mutate(city = factor(city))
+    
+    sel_order_oa <- 
+      df_bci_long %>% 
+      filter(source == "Overall") %>% 
+      arrange(desc(minutes)) %>% 
+      mutate(city = factor(city))
     
     
-    # Country Level
+    
+    output$plot18 <-  
+        renderPlotly ({
+    if(input$sort_by == "Hotel bar prices"){
+    
+    p_18 <-   df_bcir_l() %>% 
+        mutate(city = factor(city, levels = sel_order_hb$city, ordered = TRUE)) %>% 
+     ggplot(aes(x=city, y = minutes, fill = source, text = paste("City:", city, "\nMinutes:", minutes)), group = city) +
+        geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
+        # scale_fill_manual(values = col_reg) +
+        scale_x_discrete() +
+        xlab("City") +
+        ylab("Minutes") +
+        ggtitle("How long do you have to work with a average hourly net income for a beer") +
+        theme_bw() +
+        theme(axis.text.x = element_text(angle = 90, size = 7)) +
+        theme(legend.title = element_blank()) +
+        theme(legend.position = "bottom")
+      
+    ggplotly(p_18, tooltip = "text") 
+    }  
+    else if(input$sort_by == "Supermarket prices"){
+      p_18 <- df_bcir_l() %>% 
+        mutate(city = factor(city, levels = sel_order_sm$city, ordered = TRUE)) %>% 
+        ggplot(aes(x=city, y = minutes, fill = source, text = paste("City:", city, "\nMinutes:", minutes)), group = city) +
+      geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
+      # scale_fill_manual(values = col_reg) +
+      scale_x_discrete() +
+      xlab("City") +
+      ylab("Minutes") +
+      ggtitle("How long do you have to work with a average hourly net income for a beer") +
+      theme_bw() +
+      theme(axis.text.x = element_text(angle = 90, size = 7)) +
+      theme(legend.title = element_blank()) +
+      theme(legend.position = "bottom")
+      ggplotly(p_18, tooltip = "text") 
+    }
+    else if(input$sort_by == "Overall prices"){
+      p_18 <- df_bcir_l() %>% 
+        mutate(city = factor(city, levels = sel_order_oa$city, ordered = TRUE)) %>% 
+        ggplot(aes(x=city, y = minutes, fill = source, text = paste("City:", city, "\nMinutes:", minutes)), group = city) +
+        geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
+        # scale_fill_manual(values = col_reg) +
+        scale_x_discrete() +
+        xlab("City") +
+        ylab("Minutes") +
+        ggtitle("How long do you have to work with a average hourly net income for a beer") +
+        theme_bw() +
+        theme(axis.text.x = element_text(angle = 90, size = 7)) +
+        theme(legend.title = element_blank()) +
+        theme(legend.position = "bottom")
+      ggplotly(p_18, tooltip = "text") 
+    }
+          })
+    
+    
+      
+
+    
+    # Country Level -----
     
     # Table with the Data
     output$table_country <- renderDataTable({DT::datatable(df_bco, filter = "top", extensions = c('Buttons', 'Scroller'), 
@@ -294,7 +547,7 @@ sidebarMenu(
       dplyr::filter(df_bco, country %in% input$c_countries & region %in% input$c_regions)
     })
     
-    col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
+    col_reg <- c( "Euroe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
     
     # Average price in a bar (Country level)
     output$plot5 <-  renderPlotly ({
@@ -304,7 +557,7 @@ sidebarMenu(
         scale_x_discrete() +
         xlab("Country") +
         ylab("$") +
-        ggtitle("Price for a 0.33L beer in a bar in USD in selected cities") +
+        ggtitle("Price for a 33cl beer in a hotel bar in $ in selected cities") +
         theme_bw() +
         theme(axis.text.x = element_text(angle = 90, size = 7)) +
         theme(legend.title = element_blank()) +
@@ -321,7 +574,7 @@ sidebarMenu(
         scale_x_discrete() +
         xlab("Country") +
         ylab("$") +
-        ggtitle("Price for a 0.33L beer in a supermarket in USD in selected cities") +
+        ggtitle("Price for a 33cl beer in a supermarket in $ in selected cities") +
         theme_bw() +
         theme(axis.text.x = element_text(angle = 90, size = 7)) +
         theme(legend.title = element_blank()) +
@@ -338,7 +591,7 @@ sidebarMenu(
         scale_x_discrete() +
         xlab("Country") +
         ylab("$") +
-        ggtitle("Overall price for a 0.33L beer in USD in selected cities") +
+        ggtitle("Overall price for a 33cl beer in $ in selected cities") +
         theme_bw() +
         theme(axis.text.x = element_text(angle = 90, size = 7)) +
         theme(legend.title = element_blank()) +
@@ -355,7 +608,7 @@ sidebarMenu(
         scale_x_discrete() +
         xlab("Country") +
         ylab("Ratio") +
-        ggtitle("How much more does a beer cost in the bar than in the supermarket in selected cities") +
+        ggtitle("How many supermarket beers could you buy for the price of one hotel bar beer") +
         theme_bw() +
         theme(axis.text.x = element_text(angle = 90, size = 7)) +
         theme(legend.title = element_blank()) +
@@ -366,7 +619,7 @@ sidebarMenu(
 
 # Scaterplot
 
-# Consumption vs Price goEurop    
+# Consumption vs Price goEuro    
 ge_max <- max(df_bco$aop) # max for x aes
     
 output$plot9 <-  renderPlotly ({
@@ -374,12 +627,12 @@ output$plot9 <-  renderPlotly ({
     geom_point() +
     geom_text(family="OpenSansEmoji", size=6) +
     geom_smooth(method = "lm", se=FALSE) +
-    xlab("Overall price for a 0.33L beer in USD") +
+    xlab("Overall price for a 33cl beer in USD") +
     ylab("Beer per capita in Liters") +
     scale_x_continuous(breaks = seq(0, ge_max, 1),
                        limits = c(0, ge_max+1), 
                        expand = c(0,0)) +
-    ggtitle("Comparing beer prices and consumption (goEurop data)") +
+    ggtitle("Comparing beer prices and consumption (GoEuro data)") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -397,12 +650,12 @@ output$plot10 <-  renderPlotly ({
     geom_point() +
     geom_text(family="OpenSansEmoji", size=6) +
     geom_smooth(method = "lm", se=FALSE) +
-    xlab("Overall price for a 0.33L beer in USD") +
+    xlab("Overall price for a 33cl beer in USD") +
     ylab("Beer per capita in litres of pure alcohol") +
     scale_x_continuous(breaks = seq(0, gho_max, 1),
                        limits = c(0, gho_max+1), 
                        expand = c(0,0)) +
-    ggtitle("Comparing beer prices and consumption  (GHO data)") +
+    ggtitle("Comparing beer prices and consumption (GHO data)") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -420,7 +673,7 @@ output$plot11 <-  renderPlotly ({
     geom_point() +
     geom_text(family="OpenSansEmoji", size=6) +
     geom_smooth(method = "lm", se=FALSE) +
-    xlab("Overall price for a 0.33L beer in USD") +
+    xlab("Overall price for a 33cl beer in USD") +
     ylab("Beer per capita in Liters") +
     scale_x_continuous(breaks = seq(0, wiki_max, 1),
                        limits = c(0, wiki_max+1), 
@@ -443,8 +696,8 @@ output$plot12 <-  renderPlotly ({
     scale_fill_manual(values = col_reg) +
     scale_x_discrete() +
     xlab("Country") +
-    ylab("Amount of 0.33L beer") +
-    ggtitle("If you use the countries GNI per capita to only buy beer, how many beers could you buy at the bar?") +
+    ylab("Amount of 33cl beer") +
+    ggtitle("How many beers can you buy with the average GNI per capita at a hotel bar") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -460,8 +713,8 @@ output$plot13 <-  renderPlotly ({
     scale_fill_manual(values = col_reg) +
     scale_x_discrete() +
     xlab("Country") +
-    ylab("Amount of 0.33L beer") +
-    ggtitle("If you use the countries GNI per capita to only buy beer, how many beers could you buy at the supermarket?") +
+    ylab("Amount of 33cl beer") +
+    ggtitle("How many beers can you buy with the average GNI per capita in a supermarket") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -477,8 +730,8 @@ output$plot14 <-  renderPlotly ({
     scale_fill_manual(values = col_reg) +
     scale_x_discrete() +
     xlab("Country") +
-    ylab("Amount of 0.33L beer") +
-    ggtitle("If you use the countries GNI per capita to only buy beer, how many beers could you buy at overall Prices?") +
+    ylab("Amount of 33cl beer") +
+    ggtitle("How many beers can you buy with the average GNI per capita overall (spend half in a hotel bar and half in a supermarket)") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -488,7 +741,7 @@ output$plot14 <-  renderPlotly ({
 })
 
 
-# Beer consumption goEurop
+# Beer consumption goEuro
 output$plot15 <-  renderPlotly ({
   p_15 <- ggplot(df_bcor(), aes(x=reorder(country, -bpc_ge), y = bpc_ge, fill = region, text = paste("Country:", country, "\nBeer per Capita in L:", bpc_ge))) +
     geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
@@ -496,7 +749,7 @@ output$plot15 <-  renderPlotly ({
     scale_x_discrete() +
     xlab("Country") +
     ylab("Liters") +
-    ggtitle("Beer consumption per capita in Liters (goEurop data)") +
+    ggtitle("Beer consumption per capita in liters (GoEuro data)") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -530,7 +783,7 @@ output$plot17 <-  renderPlotly ({
     scale_x_discrete() +
     xlab("Country") +
     ylab("Liters") +
-    ggtitle("Beer consumption per capita in Liters (Wikipedia data)") +
+    ggtitle("Beer consumption per capita in liters (Wikipedia data)") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +

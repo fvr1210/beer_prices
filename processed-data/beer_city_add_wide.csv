@@ -1,0 +1,76 @@
+country;code;city;cc;region;asmp;abp;aop;markup;N_H_E;smbi;bbi;obi
+United Arab Emirates;ARE;Abu Dhabi;Abu Dhabi (ARE);Middle East & North Africa;1.17;8.14;4.66;7;NA;NA;NA;NA
+Netherlands;NLD;Amsterdam;Amsterdam (NLD);Europe & Central Asia;0.88;5.17;3.03;5.9;15;4;21;12
+Paraguay;PRY;Asuncion;Asuncion (PRY);Latin America & Caribbean;1.04;2.93;1.98;2.8;NA;NA;NA;NA
+Greece;GRC;Athens;Athens (GRC);Europe & Central Asia;0.9;6.72;3.81;7.5;8;7;50;29
+New Zealand;NZL;Auckland;Auckland (NZL);East Asia & Pacific;1.67;5.88;3.78;3.5;19;5;19;12
+Indonesia;IDN;Bali;Bali (IDN);East Asia & Pacific;1.35;3;2.18;2.2;NA;NA;NA;NA
+Thailand;THA;Bangkok;Bangkok (THA);East Asia & Pacific;1.1;3.12;2.11;2.8;5;13;37;25
+Spain;ESP;Barcelona;Barcelona (ESP);Europe & Central Asia;0.68;7.02;3.85;10.3;13;3;32;18
+China;CHN;Beijing;Beijing (CHN);East Asia & Pacific;1.39;6.35;3.87;4.6;4;21;95;58
+Serbia;SRB;Belgrade;Belgrade (SRB);Europe & Central Asia;0.6;3.34;1.97;5.6;NA;NA;NA;NA
+Germany;DEU;Berlin;Berlin (DEU);Europe & Central Asia;0.79;4.37;2.58;5.5;18;3;15;9
+Colombia;COL;Bogota;Bogota (COL);Latin America & Caribbean;1.26;3.55;2.4;2.8;6;13;36;24
+USA;USA;Boston;Boston (USA);North America;1.46;5.98;3.72;4.1;NA;NA;NA;NA
+Slovakia;SVK;Bratislava;Bratislava (SVK);Europe & Central Asia;1.15;2.22;1.69;1.9;8;9;17;13
+Belgium;BEL;Brussels;Brussels (BEL);Europe & Central Asia;1.19;5.17;3.18;4.3;16;4;19;12
+Romania;ROU;Bucharest;Bucharest (ROU);Europe & Central Asia;0.7;4.96;2.83;7.1;4;10;74;42
+Hungary;HUN;Budapest;Budapest (HUN);Europe & Central Asia;0.82;3.9;2.36;4.8;4;12;58;35
+Argentina;ARG;Buenos Aires;Buenos Aires (ARG);Latin America & Caribbean;0.92;7.8;4.36;8.5;7;8;67;37
+Egypt;EGY;Cairo;Cairo (EGY);Middle East & North Africa;0.95;3.27;2.11;3.4;2;28;98;63
+South Africa;ZAF;Cape Town;Cape Town (ZAF);Sub-Saharan Africa;1.08;3.2;2.14;3;NA;NA;NA;NA
+USA;USA;Chicago;Chicago (USA);North America;1.37;5.76;3.56;4.2;23;4;15;9
+Denmark;DNK;Copenhagen;Copenhagen (DNK);Europe & Central Asia;1.48;6.93;4.21;4.7;16;6;26;16
+India;IND;Delhi;Delhi (IND);South Asia;1.18;2.31;1.75;2;NA;NA;NA;NA
+Ireland;IRL;Dublin;Dublin (IRL);Europe & Central Asia;1.47;6.28;3.88;4.3;17;5;22;14
+Croatia;HRV;Dubrovnik;Dubrovnik (HRV);Europe & Central Asia;1.11;4.14;2.62;3.7;NA;NA;NA;NA
+UK;GBR;Edinburgh;Edinburgh (GBR);Europe & Central Asia;1.18;5.16;3.17;4.4;NA;NA;NA;NA
+Germany;DEU;Frankfurt;Frankfurt (DEU);Europe & Central Asia;0.83;5.54;3.19;6.7;18;3;18;11
+Switzerland;CHE;Geneva;Geneva (CHE);Europe & Central Asia;1.87;10.77;6.32;5.8;37;3;17;10
+Finland;FIN;Helsinki;Helsinki (FIN);Europe & Central Asia;1.64;8.17;4.91;5;17;6;29;17
+Vietnam;VNM;Ho Chi Minh City;Ho Chi Minh City (VNM);East Asia & Pacific;0.99;2.58;1.78;2.6;NA;NA;NA;NA
+Hong Kong;HKG;Hong Kong;Hong Kong (HKG);East Asia & Pacific;1.46;10.86;6.16;7.4;14;6;47;26
+Turkey;TUR;Istanbul;Istanbul (TUR);Europe & Central Asia;2.15;4.4;3.28;2;7;18;38;28
+Ukraine;UKR;Kiev;Kiev (UKR);Europe & Central Asia;0.97;2.36;1.66;2.4;2;29;71;50
+Poland;POL;Krakow;Krakow (POL);Europe & Central Asia;0.62;2.7;1.66;4.4;NA;NA;NA;NA
+Malaysia;MYS;Kuala Lumpur;Kuala Lumpur (MYS);East Asia & Pacific;2.01;6.55;4.28;3.3;6;20;66;43
+UK;GBR;Leeds;Leeds (GBR);Europe & Central Asia;1.44;4.64;3.04;3.2;NA;NA;NA;NA
+Peru;PER;Lima;Lima (PER);Latin America & Caribbean;1.26;3.78;2.52;3;5;15;45;30
+Portugal;PRT;Lisbon;Lisbon (PRT);Europe & Central Asia;0.9;4.25;2.58;4.7;9;6;28;17
+UK;GBR;Liverpool;Liverpool (GBR);Europe & Central Asia;1.16;4.13;2.64;3.6;NA;NA;NA;NA
+Slovenia;SVN;Ljubljana;Ljubljana (SVN);Europe & Central Asia;1.16;4.25;2.71;3.7;9;8;28;18
+UK;GBR;London;London (GBR);Europe & Central Asia;1.69;7.35;4.52;4.3;20;5;22;14
+USA;USA;Los Angeles;Los Angeles (USA);North America;1.87;4.61;3.24;2.5;24;5;12;8
+Luxembourg;LUX;Luxembourg;Luxembourg (LUX);Europe & Central Asia;1.02;6.16;3.59;6;26;2;14;8
+Spain;ESP;Madrid;Madrid (ESP);Europe & Central Asia;0.88;4.48;2.68;5.1;12;4;22;13
+Spain;ESP;Malaga;Malaga (ESP);Europe & Central Asia;0.63;2.8;1.72;4.4;NA;NA;NA;NA
+Philippines;PHL;Manila;Manila (PHL);East Asia & Pacific;0.61;3.94;2.28;6.5;2;18;118;68
+Mexico;MEX;Mexico City;Mexico City (MEX);Latin America & Caribbean;0.88;3.03;1.96;3.4;4;13;45;29
+USA;USA;Miami;Miami (USA);North America;1.29;8.97;5.13;7;25;3;22;12
+Italy;ITA;Milan;Milan (ITA);Europe & Central Asia;1.1;7.02;4.06;6.4;14;5;30;17
+Russia;RUS;Moscow;Moscow (RUS);Europe & Central Asia;2.49;5.46;3.98;2.2;6;25;55;40
+Germany;DEU;Munich;Munich (DEU);Europe & Central Asia;0.91;5.32;3.11;5.8;18;3;18;10
+USA;USA;New York;New York (USA);North America;1.44;8.97;5.2;6.2;27;3;20;12
+France;FRA;Nice;Nice (FRA);Europe & Central Asia;0.96;5.91;3.44;6.2;NA;NA;NA;NA
+Norway;NOR;Oslo;Oslo (NOR);Europe & Central Asia;3.45;7.17;5.31;2.1;22;9;20;14
+France;FRA;Paris;Paris (FRA);Europe & Central Asia;1.08;7.39;4.24;6.8;18;4;25;14
+Czech Republic;CZE;Prague;Prague (CZE);Europe & Central Asia;1.02;4.32;2.67;4.2;6;10;43;27
+Iceland;ISL;Reykjavik;Reykjavik (ISL);Europe & Central Asia;1.53;4.95;3.24;3.2;NA;NA;NA;NA
+Brazil;BRA;Rio de Janeiro;Rio de Janeiro (BRA);Latin America & Caribbean;1.09;5.15;3.12;4.7;8;8;39;23
+Italy;ITA;Rome;Rome (ITA);Europe & Central Asia;1.02;8.13;4.57;8;15;4;33;18
+USA;USA;San Francisco;San Francisco (USA);North America;1.46;6.48;3.97;4.4;NA;NA;NA;NA
+Chile;CHL;Santiago;Santiago (CHL);Latin America & Caribbean;1.03;3.53;2.28;3.4;NA;NA;NA;NA
+Spain;ESP;Seville;Seville (ESP);Europe & Central Asia;0.52;4.48;2.5;8.6;NA;NA;NA;NA
+Singapore;SGP;Singapore;Singapore (SGP);East Asia & Pacific;1.89;8.37;5.13;4.4;NA;NA;NA;NA
+Bulgaria;BGR;Sofia;Sofia (BGR);Europe & Central Asia;1.15;3.44;2.29;3;3;23;69;46
+Sweden;SWE;Stockholm;Stockholm (SWE);Europe & Central Asia;1.34;5.95;3.65;4.4;17;5;21;13
+France;FRA;Strasbourg;Strasbourg (FRA);Europe & Central Asia;0.96;5.54;3.25;5.8;NA;NA;NA;NA
+Australia;AUS;Sydney;Sydney (AUS);East Asia & Pacific;2.37;6.56;4.46;2.8;23;6;17;12
+Israel;ISR;Tel Aviv;Tel Aviv (ISR);Middle East & North Africa;2.06;9.53;5.79;4.6;13;10;44;27
+Netherlands;NLD;The Hague;The Hague (NLD);Europe & Central Asia;0.96;4.43;2.7;4.6;NA;NA;NA;NA
+Japan;JPN;Tokyo;Tokyo (JPN);East Asia & Pacific;2.38;7.17;4.77;3;19;8;23;15
+Canada;CAN;Toronto;Toronto (CAN);North America;1.64;4.91;3.27;3;19;5;16;10
+Italy;ITA;Venice;Venice (ITA);Europe & Central Asia;1.1;5.91;3.5;5.4;NA;NA;NA;NA
+Austria;AUT;Vienna;Vienna (AUT);Europe & Central Asia;1.18;5.73;3.45;4.9;19;4;18;11
+Poland;POL;Warsaw;Warsaw (POL);Europe & Central Asia;0.7;3.6;2.15;5.1;6;7;36;22
+Switzerland;CHE;Zurich;Zurich (CHE);Europe & Central Asia;1.66;7.53;4.6;4.5;38;3;12;7

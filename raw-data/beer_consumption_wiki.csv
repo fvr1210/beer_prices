@@ -1,0 +1,61 @@
+Country;Consumptionper capita[1](litres per year);2018change(litres per year);Total nationalconsumption[a](million litresper year);Year;Sources;code
+Czech Republic;191.8;13.6;2,033;2018;[1];CZE
+Austria;107.6;1.6;947;2018;[1];AUT
+Germany;101.1;1.6;8,321;2018;[1];DEU
+Romania;98.9;5.9;1,938;2018;[1];ROU
+Poland;98.2;-2.0;3,741;2018;[1];POL
+Ireland;95.8;1.3;460;2018;[1];IRL
+Spain;86;-2.0;4,051;2018;[1];ESP
+Slovakia;83.5;3.8;451;2018;[1];SVK
+Namibia;81.3;-0.1;212;2018;[1];NAM
+Croatia;80.4;1.7;338;2018;[1];HRV
+Slovenia;80.2;-2.1;169;2018;[1];SVN
+Netherlands;78.1;2.7;1,336;2018;[1];NLD
+Latvia;78.1;-0.3;146;2018;[1];LVA
+Panama;76.8;-3.0;322;2018;[1];PAN
+Finland;76.7;0.4;414;2018;[1];FIN
+Lithuania;76.5;-5.4;222;2018;[1];LTU
+Bulgaria;76.4;3.8;535;2018;[1];BGR
+Australia;76.3;0.0;1,892;2018;[1];AUS
+Hungary;76.8;5.1;726;2018;[1];HUN
+United States;73.5;-1.3;24,029;2018;[1];USA
+United Kingdom;72.9;5.6;4,856;2018;[1];GBR
+Mexico;68.7;4.2;8,982;2018;[1];MEX
+Bosnia and Herzegovina;67.9;3.7;238;2018;[1];BIH
+Gabon;67.5;-9.5;142;2016;[1];GAB
+Belgium;67;0.9;770;2018;[1];BEL
+New Zealand;65.5;1.2;308;2018;[1];NZL
+South Africa;60.1;1.1;3,447;2018;[1];ZAF
+Brazil;60;0.0;12,662;2018;[1];BRA
+Denmark;59.6;-0.7;345;2018;[1];DNK
+Democratic Republic of the Congo;57.8;-2.7;312;2018;[1];COD
+Cambodia;56.9;6.3;921;2018;[1];KHM
+Canada;55.7;-1.3;2,061;2018;[1];CAN
+Switzerland;55.5;1.7;472;2018;[1];CHE
+Puerto Rico;54.8;-3.0;203;2018;[1];PRI
+Serbia;54.7;3.1;481;2018;[1][2];SRB
+South Korea;42.8;0.3;2,160;2016;[1];KOR
+Vietnam;42;;3788;2016;[3];VNM
+Japan;41.4;-0.9;5,251;2016;[1];JPN
+Laos;41.4;;;2015;[4];LAO
+Cambodia;40;;;2015;[4];KHM
+France;33;;;2016;[5];FRA
+Italy;31;;;2016;[6];ITA
+China;29;;43,266;2018;[7];CHN
+Thailand;27;;;2015;[4];THA
+Taiwan;23.2;;;2015;[4];TWN
+Hong Kong;21.2;;159;2018;[8];HKG
+Singapore;20.9;;;2015;[4];SGP
+Israel;17.4;;;2013;[9];ISR
+Turkey;13;;;;[10];TUR
+Kenya;12;;;;[11];KEN
+Myanmar;11.3;;;2015;[4];MMR
+Uzbekistan;11;;;;[12];UZB
+Papua New Guinea;10.9;;;2015;[4];PNG
+Tanzania;8;;;;[11];TZA
+Uganda;6;;;;[11];UGA
+Malaysia;5.8;;;2015;[4];MYS
+Sri Lanka;2;;50;;[13];LKA
+India;2;;;2015;[4];IND
+Indonesia;0.7;;;2015;[4];IDN
+Portugal;51;;;2017;[4];PRT

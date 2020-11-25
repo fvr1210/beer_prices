@@ -1,8 +1,14 @@
-world_wide_beer_prices: goEurop now omion (tabel can be found at https://graphics.wsj.com/table/BEER_062415)
+Sources:
 
-beer-consumption-per-person-GHO: original by the World Health Organization Global Health Observatory (GHO) https://apps.who.int/gho/data/node.main.A1039?lang=en
+world_wide_beer_prices: GoEuro now omion (tabel can be found at https://graphics.wsj.com/table/BEER_062415)
+
+beer-consumption-per-person-GHO: World Health Organization Global Health Observatory (GHO) https://apps.who.int/gho/data/node.main.A1039?lang=en
 https://ourworldindata.org/grapher/beer-consumption-per-person
 
 wikipedia_beer_consumption: https://en.wikipedia.org/wiki/List_of_countries_by_beer_consumption_per_capita
 
-gni_per_capita_wordlbank: https://databank.worldbank.org/reports.aspx?source=2&country=MIC#		
+gni_per_capita_wordlbank: https://databank.worldbank.org/reports.aspx?source=2&country=MIC#	
+
+metadata_worldbank: https://databank.worldbank.org/reports.aspx?source=2&country=MIC#
+
+UBS_PricesAndEarnings_OpenData: https://www.ubs.com/minisites/prices-earnings/en/open-data/	

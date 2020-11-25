@@ -1,0 +1,131 @@
+<h2>Final Data</h2>
+<h4>From these different data sources I created three data sets. Two to compare beer data on the city level and one to compare the data on country level.</h4>
+<h3>City level wide</h3>
+<h4><strong>Name of the file:</strong> beer_city_add_wide.csv</h4>
+<h4><strong>Variables:</strong></h4>
+<ul>
+<li>
+<h4><em>country &ndash; </em>The English name for the included countries</h4>
+</li>
+<li>
+<h4><em>code &ndash; </em>The three letter iso3c country code for each country. Created with the R package maps based on the country name.</h4>
+</li>
+<li>
+<h4><em>city &ndash; </em>The English name for the included cities</h4>
+</li>
+<li>
+<h4>cc <em>&ndash; </em>City name with country code in brackets</h4>
+</li>
+<li>
+<h4><em>region &ndash;</em>Created with the R package maps based on the country name. Values are: East Asia &amp; Pacific, Europe &amp; Central Asia, Latin America &amp; Caribbean, Middle East &amp; North Africa, North America, South Asia, Sub-Saharan Africa.</h4>
+</li>
+<li>
+<h4><em>asmp &ndash; </em>Average beer price at the supermarket</h4>
+</li>
+<li>
+<h4><em>abp &ndash;</em> Average beer price at the hotel bar</h4>
+</li>
+<li>
+<h4><em>aop &ndash;</em> Overall price</h4>
+</li>
+<li>
+<h4><em>markup &ndash;</em> This variable is calculated by the fraction asp/abp. It gives the ratio how much more a beer costs in a hotel bar than in the supermarket.</h4>
+</li>
+<li>
+<h4><em>N_H_E &ndash; </em>average net earning. No data for Abu Dhabi, Ascuncion, Bali, Belgrad, Boston, Cape Town, Delhi, Dubrovnik, Edinburgh, Ho Chi Minh City, Krakow, Leeds, Liverpool, Malaga, Nice, Reykjavik, San Francisco, Santiago, Seville, Singapore, Strasbourg, The Hague, Venice</h4>
+</li>
+<li>
+<h4><em>Smbi &ndash; </em>Supermarket Beer Index: How many minutes do you have to work in this city to buy a 33cl beer at the supermarket. Calculated by the fraction asp/N_H_E.</h4>
+</li>
+<li>
+<h4><em>bbi &ndash; </em>Hotel Bar Beer Index: How many minutes do you have to work in this city to buy a 33cl beer at the Hotel Bar. Calculated by the fraction abp/N_H_E.</h4>
+</li>
+<li>
+<h4><em>obi &ndash; </em>Overall Beer Index: How many minutes do you have to work in this city to buy a 33cl at the mean of supermarket and hotel bar prices. Calculated by the fraction aop/N_H_E.</h4>
+</li>
+</ul>
+<h3>City level long</h3>
+<h4><strong>Name of the file:</strong> beer_city_add_long.csv</h4>
+<h4><strong>Variables:</strong></h4>
+<ul>
+<li>
+<h4><em>country &ndash; </em>The English name for the included countries</h4>
+</li>
+<li>
+<h4><em>code &ndash; </em>The three letter iso3c country code for each country. Created with the R package maps based on the country name.</h4>
+</li>
+<li>
+<h4><em>city &ndash; </em>The English name for the included cities</h4>
+</li>
+<li>
+<h4>cc <em>&ndash; </em>City name with country code in brackets</h4>
+</li>
+<li>
+<h4><em>region &ndash;</em> Created with the R package maps based on the country name. Values are: East Asia &amp; Pacific, Europe &amp; Central Asia, Latin America &amp; Caribbean, Middle East &amp; North Africa, North America, South Asia, Sub-Saharan Africa.</h4>
+</li>
+<li>
+<h4><em>asmp &ndash; </em>Average beer price at the supermarket</h4>
+</li>
+<li>
+<h4><em>abp &ndash;</em> Average beer price at the hotel bar</h4>
+</li>
+<li>
+<h4><em>aop &ndash;</em> Overall price</h4>
+</li>
+<li>
+<h4><em>markup &ndash;</em> This variable is calculated by the fraction asp/abp. It gives the ratio how much more a beer costs in a hotel bar than in the super market.</h4>
+</li>
+<li>
+<h4><em>N_H_E &ndash; </em>average net earning. No data for Abu Dhabi, Ascuncion, Bali, Belgrad, Boston, Cape Town, Delhi, Dubrovnik, Edinburgh, Ho Chi Minh City, Krakow, Leeds, Liverpool, Malaga, Nice, Reykjavik, San Francisco, Santiago, Seville, Singapore, Strasbourg, The Hague, Venice</h4>
+</li>
+<li>
+<h4><em>source &ndash; </em>Source of the minutes values (see below): in the Supermarket, at the Hotelbar, Overall</h4>
+</li>
+<li>
+<h4><em>minutes &ndash; </em>How long you have to work to buy a beer at the place given by the source</h4>
+</li>
+</ul>
+<h3>Country level wide</h3>
+<h4><strong>Name of the file:</strong> beer_country_add_wide.csv</h4>
+<h4><strong>Variables:</strong></h4>
+<ul>
+<li>
+<h4><em>country &ndash; </em>The English name for the included countries</h4>
+</li>
+<li>
+<h4><em>code &ndash; </em>The three letter iso3c country code for each country. Created with the R package maps based on the country name.</h4>
+</li>
+<li>
+<h4><em>region &ndash; </em>Created with the R package maps based on the. Created with the R package maps based on the country name. Values are: East Asia &amp; Pacific, Europe &amp; Central Asia, Latin America &amp; Caribbean, Middle East &amp; North Africa, North America, South Asia, Sub-Saharan Africa.</h4>
+</li>
+<li>
+<h4><em>asmp &ndash; </em>Average beer price at the supermarket. These values were calculated by taking the mean when there was more than one city for a country otherwise it is the same value as for the city of this country which was in the city dataset.</h4>
+</li>
+<li>
+<h4><em>abp &ndash;</em> Average beer price at the hotel bar. Same calculation method as in asmp.</h4>
+</li>
+<li>
+<h4><em>aop &ndash;</em> Overall price. Same calculation method as in asmp.</h4>
+</li>
+<li>
+<h4><em>markup &ndash;</em> This variable is calculated by the fraction asp/abp. It gives the ratio how much more a beer costs in a hotel bar than in the supermarket. Same calculation method as in asmp.</h4>
+</li>
+<li>
+<h4><em>bpc_ge &ndash; </em>Beer consumption per capita in liters beer. Values from GoEurop.</h4>
+</li>
+<li>
+<h4><em>bpc_gho &ndash; </em>Beer consumption in litres of pure alcohol. Values from GHO.</h4>
+</li>
+<li>
+<h4><em>bpc_gho &ndash; </em>Beer consumption in litres of pure alcohol. Values from Wikipedia.</h4>
+</li>
+<li>
+<h4><em>be_gni_sm &ndash; </em>Beer buying Power Hotel Bar: How many beers can you buy with the average GNI per capita at a hotel bar.</h4>
+</li>
+<li>
+<h4><em>be_gni_sm &ndash; </em>Beer buying Power Supermarket: How many beers can you buy with the average GNI per capita in a supermarket.</h4>
+</li>
+<li>
+<h4><em>be_gni_sm &ndash; </em>Beer buying Overall: How many beers can you buy with the average GNI per capita overall (spend half in a hotel bar and half in a supermarket).</h4>
+</li>
+</ul>
