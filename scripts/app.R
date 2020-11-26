@@ -13,7 +13,7 @@ library(DT)
 
 load.emojifont('OpenSansEmoji.ttf')
 
-#read city level data
+#read city level data ----
 
 df_bci_wide <- read_delim("../processed-data/beer_city_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
 df_bci_long <- read_delim("../processed-data/beer_city_add_long.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
@@ -27,7 +27,7 @@ data_source_text <-  read_file("../processed-data/data_source.html", locale = lo
 data_final_text <-  read_file("../processed-data/data_final.html", locale = locale(encoding = 'ISO-8859-2'))
 
 
-# Define UI for application that draws a histogram
+# Define UI for application that draws a histogram ----
 ui <- dashboardPage(
     dashboardHeader(title = "Beerboard"),
     dashboardSidebar(                                                                   # Dynamic sideboard content; code from https://rstudio.github.io/shinydashboard/structure.html
@@ -82,11 +82,10 @@ ui <- dashboardPage(
         
 
         
-        # City Level
-        # Prices
+        # City Level ----
+        # Prices ----
         tabItem(tabName = "Price_ci",
-                
-                
+
                 fluidRow(
                 dropdownButton(
                     tags$h3("List of Input"),
@@ -112,7 +111,7 @@ ui <- dashboardPage(
                          tabPanel("Markup", plotlyOutput("plot4"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0")
                   ))),
         
-        # Beer Index
+        # Beer Index ----
         tabItem(tabName = "BI_ci",
 
                 fluidRow(
@@ -134,8 +133,8 @@ ui <- dashboardPage(
                     actionButton("un_selectall_dre_l","Un/Select All"))),
                 fluidRow(
                   tabBox(id = "cp", width=12,  
-                         tabPanel("Bier Index", plotlyOutput("plot18"), 
-                                  radioButtons(inputId = "sort_by", label = "sort by", choices  =  c("Hotel bar prices", "Supermarket Prices", "Overall prices"), selected = "Hotel bar prices", inline = TRUE),
+                         tabPanel("Beer Index", plotlyOutput("plot18"), 
+                                  radioButtons(inputId = "sort_by", label = "sort by", choices  =  c("Hotel bar prices", "Supermarket prices", "Overall prices"), selected = "Hotel bar prices", inline = TRUE),
                                   "Data: GoEuro, UBS earning, Graphic: Flavio von Rickenbach, CC-BY 4.0")
                          ), 
                   )),
@@ -148,22 +147,21 @@ ui <- dashboardPage(
                   )
           ),
         
-        #Section Country Level
+        #Section Country Level ----
         
-        # Subsection Price 
+        # Subsection Price ----
         tabItem(tabName = "Price_co",
             fluidRow(
-              # use the same dropdownbutton for the other subsections
-              ddB_Co <- dropdownButton(
+              dropdownButton(
                 tags$h3("List of Input"),
                 circle = TRUE, status = "primary", icon = icon("gear"), width = "900px",
                 tooltip = tooltipOptions(title = "Select countries and regions"),
                   
-                  checkboxGroupInput(inputId = "c_countries",label = "Show cities in the following countries:", df_bco$country, inline = T),
-                  actionButton("un_selectall_cco","Un/Select All"),
+                  checkboxGroupInput(inputId = "c_countries_pr",label = "Show cities in the following countries:", df_bco$country, inline = T),
+                  actionButton("un_selectall_cco_pr","Un/Select All"),
                   
-                  checkboxGroupInput(inputId = "c_regions",label = "Show cities in the following Regions:", df_bco$region, inline = T),
-                  actionButton("un_selectall_cre","Un/Select All"))),
+                  checkboxGroupInput(inputId = "c_regions_pr",label = "Show cities in the following Regions:", unique(df_bco$region), inline = T),
+                  actionButton("un_selectall_cre_pr","Un/Select All"))),
             
             fluidRow(
                   tabBox(id = "cp", width=12,   
@@ -173,9 +171,20 @@ ui <- dashboardPage(
                          tabPanel("Markup", plotlyOutput("plot8"), "Data: GoEuro, Graphic: Flavio von Rickenbach, CC-BY 4.0")
                   ))),
         
-      # Subsection Consumption       
+        
+      # Subsection Consumption ----       
         tabItem(tabName = "Cons_co",
-                fluidRow(ddB_Co),
+                fluidRow(
+                  dropdownButton(
+                    tags$h3("List of Input"),
+                    circle = TRUE, status = "primary", icon = icon("gear"), width = "900px",
+                    tooltip = tooltipOptions(title = "Select countries and regions"),
+                    
+                    checkboxGroupInput(inputId = "c_countries_con",label = "Show cities in the following countries:", df_bco$country, inline = T),
+                    actionButton("un_selectall_cco_con","Un/Select All"),
+                    
+                    checkboxGroupInput(inputId = "c_regions_con",label = "Show cities in the following Regions:", unique(df_bco$region), inline = T),
+                    actionButton("un_selectall_cre_con","Un/Select All"))),
 
                 fluidRow(
                   tabBox(id = "cd", width=12,   
@@ -184,8 +193,19 @@ ui <- dashboardPage(
                          tabPanel("Beer Consumption (Wikipedia)", plotlyOutput("plot17"), "Data: Wikipedia, Graphic: Flavio von Rickenbach, CC-BY 4.0")
                   ))),
       
+      # Price vs. Consumption ----
       tabItem(tabName = "PvC_co",
-              fluidRow(ddB_Co),
+              fluidRow(
+                dropdownButton(
+                  tags$h3("List of Input"),
+                  circle = TRUE, status = "primary", icon = icon("gear"), width = "900px",
+                  tooltip = tooltipOptions(title = "Select countries and regions"),
+                  
+                  checkboxGroupInput(inputId = "c_countries_pvc",label = "Show cities in the following countries:", df_bco$country, inline = T),
+                  actionButton("un_selectall_cco_pvc","Un/Select All"),
+                  
+                  checkboxGroupInput(inputId = "c_regions_pvc",label = "Show cities in the following Regions:", unique(df_bco$region), inline = T),
+                  actionButton("un_selectall_cre_pvc","Un/Select All"))),
               
               fluidRow(
                 tabBox(id = "cd", width=12,   
@@ -195,9 +215,19 @@ ui <- dashboardPage(
                 ))),
 
 
-      # Subsection Beer Buying power   
+      # Subsection Beer Buying power  ---- 
         tabItem(tabName = "BbP_co",
-                fluidRow(ddB_Co),
+                fluidRow(
+                  dropdownButton(
+                    tags$h3("List of Input"),
+                    circle = TRUE, status = "primary", icon = icon("gear"), width = "900px",
+                    tooltip = tooltipOptions(title = "Select countries and regions"),
+                    
+                    checkboxGroupInput(inputId = "c_countries_bbp",label = "Show cities in the following countries:", df_bco$country, inline = T),
+                    actionButton("un_selectall_cco_bbp","Un/Select All"),
+                    
+                    checkboxGroupInput(inputId = "c_regions_bbp",label = "Show cities in the following Regions:", unique(df_bco$region), inline = T),
+                    actionButton("un_selectall_cre_bbp","Un/Select All"))),
 
                 fluidRow(
                   tabBox(id = "cd", width=12,   
@@ -206,6 +236,7 @@ ui <- dashboardPage(
                          tabPanel("Beer buying Power Overall", plotlyOutput("plot14"), "Data: GoEuro, World Bank, Graphic: Flavio von Rickenbach, CC-BY 4.0")
                   ))),
         
+      # Country level data ----
         
         tabItem(tabName = "Data_co", width =8,
                 fluidRow(
@@ -234,7 +265,7 @@ sidebarMenu(
            menuSubItem("Prices", tabName = "Price_co", icon = icon("data")),
            menuSubItem("Consumption", tabName = "Cons_co", icon = icon("data")),
            menuSubItem("Price vs. Consumption", tabName = "PvC_co", icon = icon("data")),
-           menuSubItem("Bier buying Power", tabName = "BbP_co", icon = icon("data")),
+           menuSubItem("Beer buying Power", tabName = "BbP_co", icon = icon("data")),
            menuSubItem("Data", tabName = "Data_co", icon = icon("chart")))
 )
     })
@@ -248,7 +279,7 @@ output$data_final <- renderUI({HTML(data_final_text)})
 
 
   
-  # City Level
+  # City Level ----
   
   
   # Table with the Data
@@ -305,11 +336,11 @@ output$data_final <- renderUI({HTML(data_final_text)})
     
     # un/select all cities long
     observe({
-      if (input$un_selectall_dci%%2 == 0) #don't know how and why this works...
+      if (input$un_selectall_dci_l%%2 == 0) #don't know how and why this works...
       {
         updateCheckboxGroupInput(session, "d_cc_l","Show following Cities:",choices=sort(unique(df_bci_long$cc)), selected = df_bci_long$cc, inline=T)
       }
-      else if(input$un_selectall_dci == 0) return(NULL)
+      else if(input$un_selectall_dci_l == 0) return(NULL)
       else
       {
         updateCheckboxGroupInput(session,"d_cc_l","Show following Cities:",choices=sort(unique(df_bci_long$cc)), inline=T)
@@ -318,11 +349,11 @@ output$data_final <- renderUI({HTML(data_final_text)})
     
     # un/select all countries
     observe({
-      if (input$un_selectall_dco%%2== 0)
+      if (input$un_selectall_dco_l%%2== 0)
       {
         updateCheckboxGroupInput(session, "d_countries_l","Show following Countries:",choices=sort(unique(df_bci_long$country)), selected = df_bci_long$country, inline=T)
       }
-      else if(input$un_selectall_dco == 0) return(NULL)
+      else if(input$un_selectall_dco_l == 0) return(NULL)
       else
       {
         updateCheckboxGroupInput(session,"d_countries_l","Show following Countries:",choices=sort(unique(df_bci_long$country)), inline=T) #use sort and unique that every country is only once shown
@@ -331,11 +362,11 @@ output$data_final <- renderUI({HTML(data_final_text)})
     
     # un/select all regions
     observe({
-      if (input$un_selectall_dre%%2== 0)
+      if (input$un_selectall_dre_l%%2== 0)
       {
         updateCheckboxGroupInput(session, "d_regions_l","Show following Regions:",choices=sort(unique(df_bci_long$region)), selected = df_bci_long$region, inline=T)
       }
-      else if(input$un_selectall_dre == 0) return(NULL)
+      else if(input$un_selectall_dre_l == 0) return(NULL)
       else
       {
         updateCheckboxGroupInput(session,"d_regions_l","Show following Regions:",choices=sort(unique(df_bci_long$region)), inline=T) #use sort and unique that every country is only once shown
@@ -507,7 +538,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
     
     # Country Level -----
     
-    # Table with the Data
+    # Table with the Data -----
     output$table_country <- renderDataTable({DT::datatable(df_bco, filter = "top", extensions = c('Buttons', 'Scroller'), 
                                                            options = list(scrollY = 650,
                                                                           scrollX = 500,
@@ -515,43 +546,47 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
                                                                           scroller = TRUE))})
     
     
-    # un/select all countries
-    observe({
-      if (input$un_selectall_cco%%2== 0)
-      {
-        updateCheckboxGroupInput(session, "c_countries","Show following Countries:",choices=sort(unique(df_bco$country)), selected = df_bco$country, inline=T)
-      }
-      else if(input$un_selectall_cco == 0) return(NULL)
-      else
-      {
-        updateCheckboxGroupInput(session,"c_countries","Show following Countries:",choices=sort(unique(df_bco$country)), inline=T) #use sort and unique that every country is only once shown
-      }
-    })
-
-    # un/select all regions
-    observe({
-      if (input$un_selectall_cre%%2== 0)
-      {
-        updateCheckboxGroupInput(session, "c_regions","Show following Regions:",choices=sort(unique(df_bco$region)), selected = df_bco$region, inline=T)
-      }
-      else if(input$un_selectall_cre == 0) return(NULL)
-      else
-      {
-        updateCheckboxGroupInput(session,"c_regions","Show following Regions:",choices=sort(unique(df_bco$region)), inline=T) #use sort and unique that every country is only once shown
-      }
-    })
-
-    
-    
-    df_bcor <- reactive({
-      dplyr::filter(df_bco, country %in% input$c_countries & region %in% input$c_regions)
-    })
+   
     
     col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "chocolate1", "Latin America & Caribbean" = "gold2", "North America" = "darkgoldenrod3", "Middle East & North Africa" = "deepskyblue", "South Asia" = "orchid", "Sub-Saharan Africa" = "red") 
     
+# Price Section ----    
+    
+    # un/select all countries price
+    observe({
+      if (input$un_selectall_cco_pr%%2== 0)
+      {
+        updateCheckboxGroupInput(session, "c_countries_pr","Show following Countries:",choices=sort(unique(df_bco$country)), selected = df_bco$country, inline=T)
+      }
+      else if(input$un_selectall_cco_pr == 0) return(NULL)
+      else
+      {
+        updateCheckboxGroupInput(session,"c_countries_pr","Show following Countries:",choices=sort(unique(df_bco$country)), inline=T) #use sort and unique that every country is only once shown
+      }
+    })
+    
+    # un/select all regions price
+    observe({
+      if (input$un_selectall_cre_pr%%2== 0)
+      {
+        updateCheckboxGroupInput(session, "c_regions_pr","Show following Regions:",choices=sort(unique(df_bco$region)), selected = df_bco$region, inline=T)
+      }
+      else if(input$un_selectall_cre_pr == 0) return(NULL)
+      else
+      {
+        updateCheckboxGroupInput(session,"c_regions_pr","Show following Regions:",choices=sort(unique(df_bco$region)), inline=T) #use sort and unique that every country is only once shown
+      }
+    })
+    
+    df_bcor_pr <- reactive({
+      dplyr::filter(df_bco, country %in% input$c_countries_pr & region %in% input$c_regions_pr)
+    })
+    
+    
+    
     # Average price in a bar (Country level)
     output$plot5 <-  renderPlotly ({
-      p_5 <- ggplot(df_bcor(), aes(x=reorder(country, -abp), y = abp, fill = region, text = paste("Country:", country, "\nPrice:", abp, "$"))) +
+      p_5 <- ggplot(df_bcor_pr(), aes(x=reorder(country, -abp), y = abp, fill = region, text = paste("Country:", country, "\nPrice:", abp, "$"))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         scale_x_discrete() +
@@ -568,7 +603,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
     
     # Average price in a supermarket (country level)
     output$plot6 <-  renderPlotly ({
-      p_6 <- ggplot(df_bcor(), aes(x=reorder(country, -asmp), y = asmp, fill = region, text = paste("City:", country, "\nPrice:", asmp, "$"))) +
+      p_6 <- ggplot(df_bcor_pr(), aes(x=reorder(country, -asmp), y = asmp, fill = region, text = paste("City:", country, "\nPrice:", asmp, "$"))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         scale_x_discrete() +
@@ -585,7 +620,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
     
     # Overall average price (country level)
     output$plot7 <-  renderPlotly ({
-      p_7 <- ggplot(df_bcor(), aes(x=reorder(country, -aop), y = aop, fill = region, text = paste("Country:", country, "\nPrice:", aop, "$"))) +
+      p_7 <- ggplot(df_bcor_pr(), aes(x=reorder(country, -aop), y = aop, fill = region, text = paste("Country:", country, "\nPrice:", aop, "$"))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         scale_x_discrete() +
@@ -602,7 +637,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
     
     # Markup (Coutry level)
     output$plot8 <-  renderPlotly ({
-      p_8 <- ggplot(df_bcor(), aes(x=reorder(country, -markup), y = markup, fill = region, text = paste("Country:", country, "\nRatio:", round(markup,2)))) +
+      p_8 <- ggplot(df_bcor_pr(), aes(x=reorder(country, -markup), y = markup, fill = region, text = paste("Country:", country, "\nRatio:", round(markup,2)))) +
         geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
         scale_fill_manual(values = col_reg) +
         scale_x_discrete() +
@@ -617,18 +652,49 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
       ggplotly(p_8, tooltip = "text") 
     })
 
-# Scaterplot
+    # Price vs. Consumption section ----
+    
+    # un/select all countries PvC
+    observe({
+      if (input$un_selectall_cco_pvc%%2== 0)
+      {
+        updateCheckboxGroupInput(session, "c_countries_pvc","Show following Countries:",choices=sort(unique(df_bco$country)), selected = df_bco$country, inline=T)
+      }
+      else if(input$un_selectall_cco_pvc == 0) return(NULL)
+      else
+      {
+        updateCheckboxGroupInput(session,"c_countries_pvc","Show following Countries:",choices=sort(unique(df_bco$country)), inline=T) #use sort and unique that every country is only once shown
+      }
+    })
+    
+    # un/select all regions PvC
+    observe({
+      if (input$un_selectall_cre_pvc%%2== 0)
+      {
+        updateCheckboxGroupInput(session, "c_regions_pvc","Show following Regions:",choices=sort(unique(df_bco$region)), selected = df_bco$region, inline=T)
+      }
+      else if(input$un_selectall_cre_pvc == 0) return(NULL)
+      else
+      {
+        updateCheckboxGroupInput(session,"c_regions_pvc","Show following Regions:",choices=sort(unique(df_bco$region)), inline=T) #use sort and unique that every country is only once shown
+      }
+    })
+    
+    df_bcor_pvc <- reactive({
+      dplyr::filter(df_bco, country %in% input$c_countries_pvc & region %in% input$c_regions_pvc)
+    })
+    
 
 # Consumption vs Price goEuro    
 ge_max <- max(df_bco$aop) # max for x aes
     
 output$plot9 <-  renderPlotly ({
-  p_9 <- ggplot(df_bcor(), aes(x = aop, y=bpc_ge, group=1,  label=label, text = paste("Country:", country, "\nConsumption:", round(bpc_ge,2), "\nPrice:", round(aop,2)))) + #group=1 has to be added that geom_smooth is shown https://stackoverflow.com/questions/45948926/ggplotly-text-aesthetic-causing-geom-line-to-not-display
+  p_9 <- ggplot(df_bcor_pvc(), aes(x = aop, y=bpc_ge, group=1,  label=label, text = paste("Country:", country, "\nConsumption:", round(bpc_ge,2), "\nPrice:", round(aop,2)))) + #group=1 has to be added that geom_smooth is shown https://stackoverflow.com/questions/45948926/ggplotly-text-aesthetic-causing-geom-line-to-not-display
     geom_point() +
     geom_text(family="OpenSansEmoji", size=6) +
     geom_smooth(method = "lm", se=FALSE) +
     xlab("Overall price for a 33cl beer in USD") +
-    ylab("Beer per capita in Liters") +
+    ylab("Beer per capita per year in Liters") +
     scale_x_continuous(breaks = seq(0, ge_max, 1),
                        limits = c(0, ge_max+1), 
                        expand = c(0,0)) +
@@ -646,12 +712,12 @@ output$plot9 <-  renderPlotly ({
 gho_max <- max(df_bco$aop, na.rm = T)
 
 output$plot10 <-  renderPlotly ({
-  p_10 <- ggplot(df_bcor(), aes(x = aop, y=bpc_gho, group=1, label=label, text = paste("Country:", country, "\nConsumption:", round(bpc_gho,2), "\nPrice:", round(aop,2)))) + #group=1 has to be added that geom_smooth is shown https://stackoverflow.com/questions/45948926/ggplotly-text-aesthetic-causing-geom-line-to-not-display
+  p_10 <- ggplot(df_bcor_pvc(), aes(x = aop, y=bpc_gho, group=1, label=label, text = paste("Country:", country, "\nConsumption:", round(bpc_gho,2), "\nPrice:", round(aop,2)))) + #group=1 has to be added that geom_smooth is shown https://stackoverflow.com/questions/45948926/ggplotly-text-aesthetic-causing-geom-line-to-not-display
     geom_point() +
     geom_text(family="OpenSansEmoji", size=6) +
     geom_smooth(method = "lm", se=FALSE) +
     xlab("Overall price for a 33cl beer in USD") +
-    ylab("Beer per capita in litres of pure alcohol") +
+    ylab("Beer per capita per year in litres of pure alcohol") +
     scale_x_continuous(breaks = seq(0, gho_max, 1),
                        limits = c(0, gho_max+1), 
                        expand = c(0,0)) +
@@ -669,12 +735,12 @@ output$plot10 <-  renderPlotly ({
 wiki_max <- max(df_bco$aop, na.rm = T) # max for x aes
 
 output$plot11 <-  renderPlotly ({
-  p_11 <- ggplot(df_bcor(), aes(x = aop, y=bpc_wiki,  group=1,  label=label, text = paste("Country:", country, "\nConsumption:", round(bpc_wiki,2), "\nPrice:", round(aop,2)))) + #group=1 has to be added that geom_smooth is shown https://stackoverflow.com/questions/45948926/ggplotly-text-aesthetic-causing-geom-line-to-not-display
+  p_11 <- ggplot(df_bcor_pvc(), aes(x = aop, y=bpc_wiki,  group=1,  label=label, text = paste("Country:", country, "\nConsumption:", round(bpc_wiki,2), "\nPrice:", round(aop,2)))) + #group=1 has to be added that geom_smooth is shown https://stackoverflow.com/questions/45948926/ggplotly-text-aesthetic-causing-geom-line-to-not-display
     geom_point() +
     geom_text(family="OpenSansEmoji", size=6) +
     geom_smooth(method = "lm", se=FALSE) +
     xlab("Overall price for a 33cl beer in USD") +
-    ylab("Beer per capita in Liters") +
+    ylab("Beer per capita per year in Liters") +
     scale_x_continuous(breaks = seq(0, wiki_max, 1),
                        limits = c(0, wiki_max+1), 
                        expand = c(0,0)) +
@@ -688,16 +754,46 @@ output$plot11 <-  renderPlotly ({
   ggplotly(p_11, tooltip = "text") 
 })
 
+# Beer buying section ----
+# un/select all countries beer buying power
+observe({
+  if (input$un_selectall_cco_bbp%%2== 0)
+  {
+    updateCheckboxGroupInput(session, "c_countries_bbp","Show following Countries:",choices=sort(unique(df_bco$country)), selected = df_bco$country, inline=T)
+  }
+  else if(input$un_selectall_cco_bbp == 0) return(NULL)
+  else
+  {
+    updateCheckboxGroupInput(session,"c_countries_bbp","Show following Countries:",choices=sort(unique(df_bco$country)), inline=T) #use sort and unique that every country is only once shown
+  }
+})
+
+# un/select all regions beer buying power
+observe({
+  if (input$un_selectall_cre_bbp%%2== 0)
+  {
+    updateCheckboxGroupInput(session, "c_regions_bbp","Show following Regions:",choices=sort(unique(df_bco$region)), selected = df_bco$region, inline=T)
+  }
+  else if(input$un_selectall_cre_bbp == 0) return(NULL)
+  else
+  {
+    updateCheckboxGroupInput(session,"c_regions_bbp","Show following Regions:",choices=sort(unique(df_bco$region)), inline=T) #use sort and unique that every country is only once shown
+  }
+})
+
+df_bcor_bbp <- reactive({
+  dplyr::filter(df_bco, country %in% input$c_countries_bbp & region %in% input$c_regions_bbp)
+})
 
 # Beer buying power at a bar
 output$plot12 <-  renderPlotly ({
-  p_12 <- ggplot(df_bcor(), aes(x=reorder(country, -be_gni_bp), y = be_gni_bp, fill = region, text = paste("Country:", country, "\nBeer buying Power:", be_gni_bp))) +
+  p_12 <- ggplot(df_bcor_bbp(), aes(x=reorder(country, -be_gni_bp), y = be_gni_bp, fill = region, text = paste("Country:", country, "\nBeer buying Power:", be_gni_bp))) +
     geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
     scale_fill_manual(values = col_reg) +
     scale_x_discrete() +
     xlab("Country") +
     ylab("Amount of 33cl beer") +
-    ggtitle("How many beers can you buy with the average GNI per capita at a hotel bar") +
+    ggtitle("How many beers can you buy with the average 2015 GNI per capita at a hotel bar") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -708,13 +804,13 @@ output$plot12 <-  renderPlotly ({
 
 # # Beer buying power at the supermarket
 output$plot13 <-  renderPlotly ({
-  p_13 <- ggplot(df_bcor(), aes(x=reorder(country, -be_gni_sm), y=be_gni_sm, fill = region, text = paste("Country:", country, "\nBeer buying Power:", be_gni_sm))) +
+  p_13 <- ggplot(df_bcor_bbp(), aes(x=reorder(country, -be_gni_sm), y=be_gni_sm, fill = region, text = paste("Country:", country, "\nBeer buying Power:", be_gni_sm))) +
     geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
     scale_fill_manual(values = col_reg) +
     scale_x_discrete() +
     xlab("Country") +
     ylab("Amount of 33cl beer") +
-    ggtitle("How many beers can you buy with the average GNI per capita in a supermarket") +
+    ggtitle("How many beers can you buy with the average 2015 GNI per capita in a supermarket") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -723,15 +819,15 @@ output$plot13 <-  renderPlotly ({
   ggplotly(p_13, tooltip = "text")
 })
 # 
-# # Beer buying power overall
+# Beer buying power overall
 output$plot14 <-  renderPlotly ({
-  p_14 <- ggplot(df_bcor(), aes(x=reorder(country, -be_gni_op), y = be_gni_op, fill = region, text = paste("County:", country, "\nBeer buying Power:", be_gni_op))) +
+  p_14 <- ggplot(df_bcor_bbp(), aes(x=reorder(country, -be_gni_op), y = be_gni_op, fill = region, text = paste("County:", country, "\nBeer buying Power:", be_gni_op))) +
     geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
     scale_fill_manual(values = col_reg) +
     scale_x_discrete() +
     xlab("Country") +
     ylab("Amount of 33cl beer") +
-    ggtitle("How many beers can you buy with the average GNI per capita overall (spend half in a hotel bar and half in a supermarket)") +
+    ggtitle("How many beers can you buy with the average 2015 GNI per capita overall (spend half in a hotel bar and half in a supermarket)") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -740,16 +836,47 @@ output$plot14 <-  renderPlotly ({
   ggplotly(p_14, tooltip = "text")
 })
 
+# Consumption section ----
+
+# un/select all countries consumption
+observe({
+  if (input$un_selectall_cco_con%%2== 0)
+  {
+    updateCheckboxGroupInput(session, "c_countries_con","Show following Countries:",choices=sort(unique(df_bco$country)), selected = df_bco$country, inline=T)
+  }
+  else if(input$un_selectall_cco_con == 0) return(NULL)
+  else
+  {
+    updateCheckboxGroupInput(session,"c_countries_con","Show following Countries:",choices=sort(unique(df_bco$country)), inline=T) #use sort and unique that every country is only once shown
+  }
+})
+
+# un/select all regions consumption
+observe({
+  if (input$un_selectall_cre_con%%2== 0)
+  {
+    updateCheckboxGroupInput(session, "c_regions_con","Show following Regions:",choices=sort(unique(df_bco$region)), selected = df_bco$region, inline=T)
+  }
+  else if(input$un_selectall_cre_con == 0) return(NULL)
+  else
+  {
+    updateCheckboxGroupInput(session,"c_regions_con","Show following Regions:",choices=sort(unique(df_bco$region)), inline=T) #use sort and unique that every country is only once shown
+  }
+})
+
+df_bcor_con <- reactive({
+  dplyr::filter(df_bco, country %in% input$c_countries_con & region %in% input$c_regions_con)
+})
 
 # Beer consumption goEuro
 output$plot15 <-  renderPlotly ({
-  p_15 <- ggplot(df_bcor(), aes(x=reorder(country, -bpc_ge), y = bpc_ge, fill = region, text = paste("Country:", country, "\nBeer per Capita in L:", bpc_ge))) +
+  p_15 <- ggplot(df_bcor_con(), aes(x=reorder(country, -bpc_ge), y = bpc_ge, fill = region, text = paste("Country:", country, "\nBeer per Capita in L:", bpc_ge))) +
     geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
     scale_fill_manual(values = col_reg) +
     scale_x_discrete() +
     xlab("Country") +
     ylab("Liters") +
-    ggtitle("Beer consumption per capita in liters (GoEuro data)") +
+    ggtitle("Beer consumption per capita per year in liters (GoEuro data)") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +
@@ -760,7 +887,7 @@ output$plot15 <-  renderPlotly ({
 
 # # Beer consumption GHO
 output$plot16 <-  renderPlotly ({
-  p_16 <- ggplot(df_bcor(), aes(x=reorder(country, -bpc_gho), y = bpc_gho, fill = region, text = paste("Country:", country, "\nBeer per Capita in pure alcohol:", bpc_gho))) +
+  p_16 <- ggplot(df_bcor_con(), aes(x=reorder(country, -bpc_gho), y = bpc_gho, fill = region, text = paste("Country:", country, "\nBeer per Capita in pure alcohol:", bpc_gho))) +
     geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
     scale_fill_manual(values = col_reg) +
     scale_x_discrete() +
@@ -777,13 +904,13 @@ output$plot16 <-  renderPlotly ({
 # 
 #  Beer consumption wiki
 output$plot17 <-  renderPlotly ({
-  p_17 <- ggplot(df_bcor(), aes(x=reorder(country, -bpc_wiki), y = bpc_wiki, fill = region, text = paste("Country:", country, "\nBeer per Capita in L:", bpc_wiki))) +
+  p_17 <- ggplot(df_bcor_con(), aes(x=reorder(country, -bpc_wiki), y = bpc_wiki, fill = region, text = paste("Country:", country, "\nBeer per Capita in L:", bpc_wiki))) +
     geom_bar(stat="identity", position = position_dodge(width=0.9), width = 0.85, color = NA) +
     scale_fill_manual(values = col_reg) +
     scale_x_discrete() +
     xlab("Country") +
     ylab("Liters") +
-    ggtitle("Beer consumption per capita in liters (Wikipedia data)") +
+    ggtitle("Beer consumption per capita per year in liters (Wikipedia data)") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, size = 7)) +
     theme(legend.title = element_blank()) +

@@ -1,27 +1,27 @@
 <p><h1>Beerboard</h1></p>
-<p>Beer and Money, two of my favorite things on this world&hellip; just kidding, I only like money because you can buy beer with it. And in switzerland you need a lot of money to buy beer.</p>
-<p>Do you? Yes beer is expensive in restaurants and bars in switzerland but I don't think it is in the supermarket, where you can buy beer at low prices down to 0.50 $ for a half liter can. While travalling I never really found cheaper beer in supermarkets or small shops.</p>
-<p>Sometime ago I found data about beer prices which was collected by GoEuro (now Omio) a travel where you can find, compare and buy trail, bus and flight tickets for Europe (now also for the USA and Canada, that&rsquo;s maybe the reason why they changed names&hellip;). &nbsp;This data includes among others supermarket, hotel bar and overall prices for a 0.33L beer in different cities.</p>
+<p>Beer and Money, two of my favorite things on this world… just kidding, I only like money because you can buy beer with it. And in Switzerland you need a lot of money to buy beer.</p>
+<p>Do you? Yes beer is expensive in restaurants and bars in Switzerland but I don't think it is in the supermarket, where you find half liter beer cans for 0.50$. While visiting other countries I rarely found cheaper beer in supermarkets or small shops.</p>
+<p>A few months ago I found data about beer prices. This data was collected by GoEuro (now Omio), a travel website, where you can find, compare and buy tickets for trains, buses or flights for European countries (now also for the USA and Canada, that’s maybe the reason why they changed names…).  This data includes supermarket, hotel bar and overall prices for a 0.33L beer in different cities.</p>
 <p>So what do you do when you are interested in economics, data and beer? Right you build a Beer Data Dashboard aka Beerboard. &nbsp;</p>
-With this Beerboard I know can answer questions like:
+With this Beerboard I now can answer questions like:
 <ul>
 <li>
-&laquo;Is Switzerland really an expensive place to drink beer?&rdquo; (Spoiler: yes it is, especially as a tourist in a hotel bar but not so as resident when you compare it with the earnings&hellip;)
+&laquo;Is Switzerland really an expensive place to drink beer?&rdquo; (Spoiler: yes it is, especially as a tourist in a hotel bar but not really as citizen when you compare earnings&hellip;)
 </li>
 <li>
-&laquo;Do people drink more beer in countries where beer is cheaper?&raquo;
+&laquo;Do people drink more beer when it's cheaper?&raquo;
 </li>
 <li>
-&laquo;Where can people buy the most beer with their income?&raquo;
+&laquo;Where can inhabitants buy the most beer with their income?&raquo;
 </li>
 </ul>
-If you like my Beerboard or you want to have your own dashboard for your data you can contact me over my <a href="www.linkedin.com/in/flavio-von-rickenbach-12103b">LinkedIn</a> or via <a href="mailto:%20flavio_von_rickenbach@hotmail.com">Mail</a>
+If you like my Beerboard and you want to have your own dashboard for your data, you can contact me over my <a href="www.linkedin.com/in/flavio-von-rickenbach-12103b">LinkedIn</a> or via <a href="mailto:%20flavio_von_rickenbach@hotmail.com">Mail</a>
 CC-BY 4.0
 <p><h2>Data Sources</h2></p>
-<p>For this Beerboard I use data from different sources and this sources sometimes also use further sources&hellip; I try the show on this info site the source of each number such that I don&rsquo;t have to do this in the graphs which would make them more messy. Following I name the source of the data, how the data is named in my GitHub folder, the names of the variables and the meaning of this variables</p>
+<p>For this Beerboard I use data from different sources and this sources sometimes also use further sources&hellip; Showing all this in the graphs would make the them really messy. Therefore I created this section. Following I state where if found the data I use for my graphs and describe it.</p>
 <p><h3>GoEuro Data </h3></p>
 <strong>Name of the file:</strong> world_wide_beer_prices.csv
-<p><strong>Source:</strong></p> The data was collected in 2015. I can&rsquo;t find a link for the raw data anymore but <a href="https://graphics.wsj.com/table/BEER_062415">here</a> is a table with the data you could probably scrap and <a href="https://www.businessinsider.com/go-euros-beer-price-index-shows-the-most-expensive-places-for-beer-2015-7?op=1&amp;r=US&amp;IR=T">here</a> you find a graphic produced by GoEuro with additional information I also use here. If this two will not work for you use your favorite search engine and search for &ldquo;goeuro beer index 2015&rdquo; and then choose images
+<p><strong>Source:</strong></p> The data was collected in 2015. I can&rsquo;t find a link for the raw data anymore but <a href="https://graphics.wsj.com/table/BEER_062415">here</a> is a table with the data you could probably scrap and <a href="https://www.businessinsider.com/go-euros-beer-price-index-shows-the-most-expensive-places-for-beer-2015-7?op=1&amp;r=US&amp;IR=T">here</a> you find a graphic produced by GoEuro with additional information about the data in the footnotes. If this two links are not working, use your favorite search engine and search for &ldquo;goeuro beer index 2015&rdquo; and then choose images.
 <p><strong>Variables:</strong></p>
 <ul>
 <li>
@@ -52,9 +52,9 @@ All prices were converted in USD using the Bloomberg exchange rate on June 2015.
 Where beers are sold in 12ou (35.3cl) varieties vs the European standard of 33cl, GoEuro normalized prices to be equivalent to a 33cl bottle.
 </li>
 </ul>
-Looking at the beer prices at the bar it would have be good if they have stated more prominent and not only in a footnote that the prices were collected at hotel bars. The prices seem in general a little high for me and that they were collected at a hotel bar could be a reason. In my opinion they also should have used an average exchange rate to converting to USD not just take one on a somehow random day.
+It would have be good if they have stated more prominent and not only in a footnote that the bar prices were collected at hotel bars. The prices seem in general a little high for me and that they were collected at a hotel bar could be a reason. In my opinion they also should have used an average exchange rate to converting to USD not just take one on a somehow random day.
 Unfortunately, I don&rsquo;t have the exact source for the consumption data. I doubt that the numbers are for 2015 since such data is mostly uploaded with delay. I&rsquo;m also not sure if this data has some faulty numbers, especially the high consumption in Vietnam seems odd. This is way I added two more sources for consumption data to the raw data base.
-The data set has a European bias. This is probably due to the fact, that it was collected by a European focused website…
+The data set has a European bias. This is probably due to the fact, that it was collected by a European focused website.
 <p><h3>GHO consumption data</h3></p>
 <strong>Name of the file:</strong> beer-consumption-per-person-GHO.csv
 <strong>Source: </strong>The data is from the World Health Organization (WHO) data base &ldquo;Global Health Observatory&rdquo; (GHO) and can be found <a href="https://apps.who.int/gho/data/node.main.A1039?lang=en">here</a>. I choose to use the consumption data for the year 2015.
@@ -80,10 +80,10 @@ ALCOHOLTYPE (DISPLAY) &ndash; 4 different types: Other alcohol beverages, Spirit
 </li>
 </ul>
 <p><strong>Remarks:</strong></p>
-Due to my experience I know that you must be cautious when comparing consumption data. You find for example at least three numbers for meat consumption in Switzerland depending on the source and calculation methods (if you want to know more about this check <a href="https://novanimal.ch/2018/10/01/produktion-und-konsum-von-fleisch-in-der-schweiz/">this</a> out). So when it comes to cross country data you have to be even more careful even if they are published from one Organization. Don&rsquo;t use this numbers as exact values! Look at the as an approximation and if two countries have only small differences there is maybe no difference in the real world. The sources for the data and the calculation methods for the GHO data can be found <a href="https://www.who.int/data/gho/indicator-metadata-registry/imr-details/462">here</a>.
+Due to my experience I know that you must be cautious when comparing consumption data. You find for example at least three numbers for meat consumption in Switzerland depending on the source and calculation methods (if you want to know more about this check <a href="https://novanimal.ch/2018/10/01/produktion-und-konsum-von-fleisch-in-der-schweiz/">this</a> out). So when it comes to cross country data you have to be even more careful even if they are published from one Organization. Don&rsquo;t use this numbers as exact values! Look at them as an approximation and if two countries have only small differences there is maybe no difference in the real world. The sources for the data and the calculation methods for the GHO data can be found <a href="https://www.who.int/data/gho/indicator-metadata-registry/imr-details/462">here</a>.
 <p><h3>Wikipedia consumption data</h3></p>
 <strong>Name of the file:</strong> beer_consumption_wiki.csv
-<strong>Source: </strong>The data is scrapped from <a href="https://en.wikipedia.org/wiki/List_of_countries_by_beer_consumption_per_capita">this</a> Wikipedia side. As in the nature of Wikipedia the source of the consumption data for the countries varies. Most data is from the Kirin Beer University Report: &ldquo;Global Beer Consumption by Country in 2018&rdquo; which can be found <a href="https://www.kirinholdings.co.jp/english/news/2019/1224_01.html">here</a> (note to myself, there is a Beer University! Have to find out how to get a job there!). <a href="https://en.wikipedia.org/wiki/Kirin_Company">Wikipedia</a> says: &ldquo;<strong>Kirin Brewery Company, Limited</strong> (麒麟(キリン)麦酒(ビール)株式会社, <em>Kirin Bīru kabushiki gaisha</em>) is a Japanese integrated beverages company. It is a subsidiary of <strong>Kirin Holdings Company, Limited</strong>. Its major operating units include Kirin Brewery Company, Limited, <a href="https://en.wikipedia.org/wiki/Mercian_Corporation">Mercian Corporation</a> and Kirin Beverages Company, Limited. Kirin is a member of the <a href="https://en.wikipedia.org/wiki/Mitsubishi">Mitsubishi Group</a>.&raquo;. There are a lot of other data sources:
+<strong>Source: </strong>The data is scrapped from <a href="https://en.wikipedia.org/wiki/List_of_countries_by_beer_consumption_per_capita">this</a> Wikipedia side. As in the nature of Wikipedia the source of the consumption data for the countries varies. Most data is from the Kirin Beer University Report: &ldquo;Global Beer Consumption by Country in 2018&rdquo; which can be found <a href="https://www.kirinholdings.co.jp/english/news/2019/1224_01.html">here</a> (note to myself, there is a Beer University! Have to find out how to get a job there!). <a href="https://en.wikipedia.org/wiki/Kirin_Company">Wikipedia</a> says: &ldquo;Kirin Brewery Company, Limited is a Japanese integrated beverages company. It is a subsidiary of Kirin Holdings Company, Limited. Its major operating units include Kirin Brewery Company, Limited, <a href="https://en.wikipedia.org/wiki/Mercian_Corporation">Mercian Corporation</a> and Kirin Beverages Company, Limited. Kirin is a member of the <a href="https://en.wikipedia.org/wiki/Mitsubishi">Mitsubishi Group</a>.&raquo;. There are a lot of other data sources:
 <p>1&nbsp; <a href="https://www.kirinholdings.co.jp/english/news/2019/1224_01.html">"Kirin Beer University Report Global Beer Consumption by Country in 2018 | News Releases | Kirin Holdings"</a>. www.kirinholdings.co.jp.</p>
 <p>2 &nbsp;sectoresonline.com (September 2, 2011). <a href="https://web.archive.org/web/20140508082709/http:/www.sitioandino.com/nota/6920-una-mala-para-el-sector-vitivinicola-en-argentina-se-consume-mas-cerveza-que-vino/">"Una mala para el sector vitivin&iacute;cola: en Argentina se consume m&aacute;s cerveza que vino"</a>. Andino (in Spanish). Archived from <a href="http://www.sitioandino.com/nota/6920-una-mala-para-el-sector-vitivinicola-en-argentina-se-consume-mas-cerveza-que-vino/">the original</a> on May 8, 2014<em>. Retrieved </em><em>September 2,</em><em> 2011</em>.</p>
 <p>3 <a href="http://kinhdoanh.vnexpress.net/tin-tuc/hang-hoa/nguoi-viet-tieu-thu-gan-3-8-ty-lit-bia-3527545.html">"Vietnamese consume 3.8 billion liters of beers in 2016"</a>. VnExpress. January 12, 2017<em>. Retrieved </em><em>January 12,</em><em> 2017</em>.</p>
@@ -133,9 +133,9 @@ Quoting from the UBS methodology explanations (here) wages were calculated the f
 We collected tax and social security information using PwC&rsquo;s &ldquo;Worldwide Tax Summaries,&rdquo; supplemented by information from local tax authorities, and corroborated our results with survey participants. Taxes were averaged for each profession, weighted and then calculated as a percentage. The social security contributions of employees and employers were gathered from PwC and KPMG sources.
 Our net wages are calculated by deducting these social security contributions from gross wages and then subtracting taxes. Hourly wages in individual cities were calculated by dividing average annual gross or net wages by the average number of hours worked per year.
 Public sector spending and social security systems in individual countries (and in individual cities) vary greatly, so the percentage of deductions ranges widely.&rdquo;
-Here you see again that there are a lot of calculations and assumptions in variables like average net earning and the numbers shouldn&rsquo;t be used as if they were natural science results. But for comparisons within countries for different years and also for rankings between countries they should hold.
+Here you see again that there are a lot of calculations and assumptions in variables like average net earning and the numbers shouldn&rsquo;t be used as if they were natural science results. 
 <h2>Final Data</h2>
-From these different data sources I created three data sets. Two to compare beer data on the city level and one to compare the data on country level.
+From the different data I discribed in the data source section I created three data sets. Two to compare beer data on the city level and one to compare the data on country level.
 <p><h3>City level wide</h3></p>
 <strong>Name of the file:</strong> beer_city_add_wide.csv
 <p><strong>Variables:</strong></p>
