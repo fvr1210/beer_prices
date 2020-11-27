@@ -1,7 +1,7 @@
 <p><h1>Beerboard</h1></p>
 <p>Beer and Money, two of my favorite things on this world… just kidding, I only like money because you can buy beer with it. And in Switzerland you need a lot of money to buy beer.</p>
 <p>Do you? Yes beer is expensive in restaurants and bars in Switzerland but I don't think it is in the supermarket, where you find half liter beer cans for 0.50$. While visiting other countries I rarely found cheaper beer in supermarkets or small shops.</p>
-<p>A few months ago I found data about beer prices. This data was collected by GoEuro (now Omio), a travel website, where you can find, compare and buy tickets for trains, buses or flights for European countries (now also for the USA and Canada, that’s maybe the reason why they changed names).  This data includes supermarket, hotel bar and overall prices for a 0.33L beer in different cities.</p>
+<p>A few months ago I found data about beer prices. This data was collected by GoEuro (now Omio), a travel website, where you can find, compare and buy tickets for trains, buses or flights for European countries (now also for the USA and Canada, that’s probably the reason why they changed names).  This data includes supermarket, hotel bar and overall prices for a 0.33L beer in different cities.</p>
 <p>So what do you do when you are interested in economics, data and beer? Right you build a Beer Data Dashboard aka Beerboard. &nbsp;</p>
 With this Beerboard I now can answer questions like:
 <ul>
