@@ -1,7 +1,7 @@
 <p><h1>Beerboard</h1></p>
 <p>Beer and Money, two of my favorite things on this world… just kidding, I only like money because you can buy beer with it. And in Switzerland you need a lot of money to buy beer.</p>
 <p>Do you? Yes beer is expensive in restaurants and bars in Switzerland but I don't think it is in the supermarket, where you find half liter beer cans for 0.50$. While visiting other countries I rarely found cheaper beer in supermarkets or small shops.</p>
-<p>A few months ago I found data about beer prices. This data was collected by GoEuro (now Omio), a travel website, where you can find, compare and buy tickets for trains, buses or flights for European countries (now also for the USA and Canada, that’s maybe the reason why they changed names…).  This data includes supermarket, hotel bar and overall prices for a 0.33L beer in different cities.</p>
+<p>A few months ago I found data about beer prices. This data was collected by GoEuro (now Omio), a travel website, where you can find, compare and buy tickets for trains, buses or flights for European countries (now also for the USA and Canada, that’s maybe the reason why they changed names).  This data includes supermarket, hotel bar and overall prices for a 0.33L beer in different cities.</p>
 <p>So what do you do when you are interested in economics, data and beer? Right you build a Beer Data Dashboard aka Beerboard. &nbsp;</p>
 With this Beerboard I now can answer questions like:
 <ul>
@@ -15,8 +15,8 @@ With this Beerboard I now can answer questions like:
 &laquo;Where can inhabitants buy the most beer with their income?&raquo;
 </li>
 </ul>
-If you like my Beerboard and you want to have your own dashboard for your data, you can contact me over my <a href="www.linkedin.com/in/flavio-von-rickenbach-12103b">LinkedIn</a> or via <a href="mailto:%20flavio_von_rickenbach@hotmail.com">Mail</a>
-CC-BY 4.0
+If you like my Beerboard and you want to have your own dashboard for your data or you want to give me suggestions for improvement or other observations please contact me over my <a href="www.linkedin.com/in/flavio-von-rickenbach-12103b">LinkedIn</a> or via <a href="mailto:%20beerboard@hotmail.com">Mail.</a>
+Created by: Flavio von Rickenbach, CC-BY 4.0
 <p><h2>Data Sources</h2></p>
 <p>For this Beerboard I use data from different sources and this sources sometimes also use further sources&hellip; Showing all this in the graphs would make the them really messy. Therefore I created this section. Following I state where if found the data I use for my graphs and describe it.</p>
 <p><h3>GoEuro Data </h3></p>
@@ -256,12 +256,12 @@ cc <em>&ndash; </em>City name with country code in brackets
 <em>bpc_gho &ndash; </em>Beer consumption in litres of pure alcohol. Values from Wikipedia.
 </li>
 <li>
-<em>be_gni_sm &ndash; </em>Beer buying Power Hotel Bar: How many beers can you buy with the average GNI per capita at a hotel bar.
+<em>be_gni_sm &ndash; </em>Beer buying Power Hotel Bar: How many beers could you buy when you spend the 2015 average GNI at a hotel bar.
 </li>
 <li>
-<em>be_gni_sm &ndash; </em>Beer buying Power Supermarket: How many beers can you buy with the average GNI per capita in a supermarket.
+<em>be_gni_sm &ndash; </em>Beer buying Power Supermarket: How many beers could you buy when you spend the 2015 average GNI in a supermarket.
 </li>
 <li>
-<em>be_gni_sm &ndash; </em>Beer buying Overall: How many beers can you buy with the average GNI per capita overall (spend half in a hotel bar and half in a supermarket).
+<em>be_gni_sm &ndash; </em>Beer buying Overall: How many beers could you buy when you spend the 2015 average GNI overall (spend half in a hotel bar and half in a supermarket).
 </li>
 </ul>

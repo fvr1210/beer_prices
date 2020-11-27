@@ -26,9 +26,16 @@ introduction_text <-  read_file("../processed-data/introduction.html", locale = 
 data_source_text <-  read_file("../processed-data/data_source.html", locale = locale(encoding = 'ISO-8859-2'))
 data_final_text <-  read_file("../processed-data/data_final.html", locale = locale(encoding = 'ISO-8859-2'))
 
+# define theme ----
+mytheme <- theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, size = 7),
+        legend.title = element_blank(),
+        legend.position = "bottom")
+
+
 
 # Define UI for application that draws a histogram ----
-ui <- dashboardPage(
+ui <- dashboardPage( skin = "yellow",
     dashboardHeader(title = "Beerboard"),
     dashboardSidebar(                                                                   # Dynamic sideboard content; code from https://rstudio.github.io/shinydashboard/structure.html
         sidebarMenuOutput("menu"),
@@ -56,19 +63,7 @@ ui <- dashboardPage(
                 ".control-label{ 
                     margin-left: 15px;
                     }",
-              
-                ".skin-blue .main-header .logo {
-                    background-color: #CDAA37;
-                  }", 
-                
-                ".skin-blue .main-header .logo:hover {
-                  background-color: #CDAA37;
-                }",
-                ".skin-blue .main-header .navbar {
-                    background-color: #D5BC26;
-                  }"  
-
-              ))))         
+           ))))         
         ),
     dashboardBody(
       # Information 
@@ -395,10 +390,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
         xlab("City") +
         ylab("$") +
         ggtitle("Price for a 33cl beer in a hotel bar in $ in selected cities") +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, size = 7)) +
-        theme(legend.title = element_blank()) +
-        theme(legend.position = "bottom")
+        mytheme
     
     ggplotly(p_1, tooltip = "text") 
     })
@@ -412,11 +404,8 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
         xlab("City") +
         ylab("$") +
         ggtitle("Price for a 33cl beer in a supermarket in $ in selected cities") +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, size = 7)) +
-        theme(legend.title = element_blank()) +
-        theme(legend.position = "bottom")
-      
+        mytheme
+
       ggplotly(p_2, tooltip = "text") 
     })
     
@@ -429,10 +418,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
         xlab("City") +
         ylab("$") +
         ggtitle("Overall price for a 33cl beer in $ in selected cities") +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, size = 7)) +
-        theme(legend.title = element_blank()) +
-        theme(legend.position = "bottom")
+        mytheme
       
       ggplotly(p_3, tooltip = "text") 
     })
@@ -446,10 +432,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
         xlab("City") +
         ylab("Ratio") +
         ggtitle("How many supermarket beers could you buy for the price of one hotel bar beer") +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, size = 7)) +
-        theme(legend.title = element_blank()) +
-        theme(legend.position = "bottom")
+        mytheme
       
       ggplotly(p_4, tooltip = "text") 
     })
@@ -491,10 +474,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
         xlab("City") +
         ylab("Minutes") +
         ggtitle("How long do you have to work with a average hourly net income for a beer") +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, size = 7)) +
-        theme(legend.title = element_blank()) +
-        theme(legend.position = "bottom")
+        mytheme
       
     ggplotly(p_18, tooltip = "text") 
     }  
@@ -508,10 +488,8 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
       xlab("City") +
       ylab("Minutes") +
       ggtitle("How long do you have to work with a average hourly net income for a beer") +
-      theme_bw() +
-      theme(axis.text.x = element_text(angle = 90, size = 7)) +
-      theme(legend.title = element_blank()) +
-      theme(legend.position = "bottom")
+      mytheme
+      
       ggplotly(p_18, tooltip = "text") 
     }
     else if(input$sort_by == "Overall prices"){
@@ -524,10 +502,8 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
         xlab("City") +
         ylab("Minutes") +
         ggtitle("How long do you have to work with a average hourly net income for a beer") +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, size = 7)) +
-        theme(legend.title = element_blank()) +
-        theme(legend.position = "bottom")
+        mytheme
+      
       ggplotly(p_18, tooltip = "text") 
     }
           })
@@ -593,10 +569,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
         xlab("Country") +
         ylab("$") +
         ggtitle("Price for a 33cl beer in a hotel bar in $ in selected cities") +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, size = 7)) +
-        theme(legend.title = element_blank()) +
-        theme(legend.position = "bottom")
+        mytheme
       
       ggplotly(p_5, tooltip = "text") 
     })
@@ -610,10 +583,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
         xlab("Country") +
         ylab("$") +
         ggtitle("Price for a 33cl beer in a supermarket in $ in selected cities") +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, size = 7)) +
-        theme(legend.title = element_blank()) +
-        theme(legend.position = "bottom")
+        mytheme
       
       ggplotly(p_6, tooltip = "text") 
     })
@@ -627,10 +597,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
         xlab("Country") +
         ylab("$") +
         ggtitle("Overall price for a 33cl beer in $ in selected cities") +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, size = 7)) +
-        theme(legend.title = element_blank()) +
-        theme(legend.position = "bottom")
+        mytheme
       
       ggplotly(p_7, tooltip = "text") 
     })
@@ -644,10 +611,7 @@ col_reg <- c( "Europe & Central Asia" = "green3", "East Asia & Pacific" = "choco
         xlab("Country") +
         ylab("Ratio") +
         ggtitle("How many supermarket beers could you buy for the price of one hotel bar beer") +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle = 90, size = 7)) +
-        theme(legend.title = element_blank()) +
-        theme(legend.position = "bottom")
+        mytheme
       
       ggplotly(p_8, tooltip = "text") 
     })
@@ -699,10 +663,7 @@ output$plot9 <-  renderPlotly ({
                        limits = c(0, ge_max+1), 
                        expand = c(0,0)) +
     ggtitle("Comparing beer prices and consumption (GoEuro data)") +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 90, size = 7)) +
-    theme(legend.title = element_blank()) +
-    theme(legend.position = "bottom")
+    mytheme
 
   
   ggplotly(p_9, tooltip = "text") 
@@ -722,10 +683,7 @@ output$plot10 <-  renderPlotly ({
                        limits = c(0, gho_max+1), 
                        expand = c(0,0)) +
     ggtitle("Comparing beer prices and consumption (GHO data)") +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 90, size = 7)) +
-    theme(legend.title = element_blank()) +
-    theme(legend.position = "bottom")
+    mytheme
   
   
   ggplotly(p_10, tooltip = "text") 
@@ -745,10 +703,7 @@ output$plot11 <-  renderPlotly ({
                        limits = c(0, wiki_max+1), 
                        expand = c(0,0)) +
     ggtitle("Comparing beer prices and consumption (Wikipedia data)") +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 90, size = 7)) +
-    theme(legend.title = element_blank()) +
-    theme(legend.position = "bottom")
+    mytheme
   
   
   ggplotly(p_11, tooltip = "text") 
@@ -793,11 +748,8 @@ output$plot12 <-  renderPlotly ({
     scale_x_discrete() +
     xlab("Country") +
     ylab("Amount of 33cl beer") +
-    ggtitle("How many beers can you buy with the average 2015 GNI per capita at a hotel bar") +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 90, size = 7)) +
-    theme(legend.title = element_blank()) +
-    theme(legend.position = "bottom")
+    ggtitle("How many beers could you buy when you spend the 2015 average GNI at a hotel bar") +
+    mytheme
   
   ggplotly(p_12, tooltip = "text") 
 })
@@ -810,11 +762,8 @@ output$plot13 <-  renderPlotly ({
     scale_x_discrete() +
     xlab("Country") +
     ylab("Amount of 33cl beer") +
-    ggtitle("How many beers can you buy with the average 2015 GNI per capita in a supermarket") +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 90, size = 7)) +
-    theme(legend.title = element_blank()) +
-    theme(legend.position = "bottom")
+    ggtitle("How many beers could you buy when you spend the 2015 average GNI in a supermarket") +
+    mytheme
 
   ggplotly(p_13, tooltip = "text")
 })
@@ -827,11 +776,8 @@ output$plot14 <-  renderPlotly ({
     scale_x_discrete() +
     xlab("Country") +
     ylab("Amount of 33cl beer") +
-    ggtitle("How many beers can you buy with the average 2015 GNI per capita overall (spend half in a hotel bar and half in a supermarket)") +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 90, size = 7)) +
-    theme(legend.title = element_blank()) +
-    theme(legend.position = "bottom")
+    ggtitle("How many beers could you buy when you spend the 2015 average GNI overall (spend half in a hotel bar and half in a supermarket)") +
+    mytheme
 
   ggplotly(p_14, tooltip = "text")
 })
@@ -877,10 +823,7 @@ output$plot15 <-  renderPlotly ({
     xlab("Country") +
     ylab("Liters") +
     ggtitle("Beer consumption per capita per year in liters (GoEuro data)") +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 90, size = 7)) +
-    theme(legend.title = element_blank()) +
-    theme(legend.position = "bottom")
+    mytheme
   
   ggplotly(p_15, tooltip = "text") 
 })
@@ -894,10 +837,7 @@ output$plot16 <-  renderPlotly ({
     xlab("Country") +
     ylab("Liter") +
     ggtitle("Beer consumption per capita in litres of pure alcohol (GHO data)") +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 90, size = 7)) +
-    theme(legend.title = element_blank()) +
-    theme(legend.position = "bottom")
+    mytheme
   
   ggplotly(p_16, tooltip = "text") 
 })
@@ -911,10 +851,7 @@ output$plot17 <-  renderPlotly ({
     xlab("Country") +
     ylab("Liters") +
     ggtitle("Beer consumption per capita per year in liters (Wikipedia data)") +
-    theme_bw() +
-    theme(axis.text.x = element_text(angle = 90, size = 7)) +
-    theme(legend.title = element_blank()) +
-    theme(legend.position = "bottom")
+    mytheme
   
   ggplotly(p_17, tooltip = "text") 
 })
