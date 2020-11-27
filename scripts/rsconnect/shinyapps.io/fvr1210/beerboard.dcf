@@ -1,0 +1,12 @@
+name: beerboard
+title: beerboard
+username:
+account: fvr1210
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3309983
+bundleId: 3912010
+url: https://fvr1210.shinyapps.io/beerboard/
+when: 1606469480.53162
+asMultiple: FALSE
+asStatic: FALSE

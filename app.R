@@ -2,6 +2,7 @@
 # Using preused stuff from the Markdown file
 
 library(shiny)
+library(renv)
 library(lubridate)
 library(plotly)
 library(ggthemes)
@@ -11,20 +12,21 @@ library(emojifont) # https://mran.microsoft.com/snapshot/2016-07-03/web/packages
 library(shinyWidgets)
 library(DT)
 
+
 load.emojifont('OpenSansEmoji.ttf')
 
 #read city level data ----
 
-df_bci_wide <- read_delim("../processed-data/beer_city_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
-df_bci_long <- read_delim("../processed-data/beer_city_add_long.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+df_bci_wide <- read_delim("processed-data/beer_city_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
+df_bci_long <- read_delim("processed-data/beer_city_add_long.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2'))
 
-df_bco <- read_delim("../processed-data/beer_country_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
+df_bco <- read_delim("processed-data/beer_country_add_wide.csv", delim = ";" , locale = locale(encoding = 'ISO-8859-2')) %>% 
   mutate(label = c(emoji('beer')))
 
 
-introduction_text <-  read_file("../processed-data/introduction.html", locale = locale(encoding = 'ISO-8859-2'))
-data_source_text <-  read_file("../processed-data/data_source.html", locale = locale(encoding = 'ISO-8859-2'))
-data_final_text <-  read_file("../processed-data/data_final.html", locale = locale(encoding = 'ISO-8859-2'))
+introduction_text <-  read_file("processed-data/introduction.html", locale = locale(encoding = 'ISO-8859-2'))
+data_source_text <-  read_file("processed-data/data_source.html", locale = locale(encoding = 'ISO-8859-2'))
+data_final_text <-  read_file("processed-data/data_final.html", locale = locale(encoding = 'ISO-8859-2'))
 
 # define theme ----
 mytheme <- theme_bw() +

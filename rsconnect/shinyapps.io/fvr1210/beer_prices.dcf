@@ -1,0 +1,10 @@
+name: beer_prices
+title:
+username:
+account: fvr1210
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3310083
+bundleId: 3912097
+url: https://fvr1210.shinyapps.io/beer_prices/
+when: 1606471322.97402

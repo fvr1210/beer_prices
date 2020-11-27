@@ -1,0 +1,13 @@
+name: beerboard
+title: beerboard
+username:
+account: fvr1210
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3310190
+bundleId: 3912242
+url: https://fvr1210.shinyapps.io/beerboard/
+when: 1606474398.06406
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .Rprofile|ReadMe.md|scripts/.Rhistory|scripts/adding_var.R|scripts/rsconnect/shinyapps.io/fvr1210/beerboard.dcf|raw-data
